@@ -1,0 +1,68 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net (Default Deny)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 2. Global Helper Functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // 3. Validation Blueprint for QuizLead
+    function isValidLead(data) {
+      return data.keys().hasAll([
+        'id', 'timestamp', 'name', 'businessName', 'whatsapp', 
+        'email', 'industry', 'channels', 'replyDelay', 'corePain', 
+        'timeValuation', 'revenueLeakage', 'syncedToSheets'
+      ]) 
+      && data.id is string && data.id.size() <= 128
+      && data.timestamp is string && data.timestamp.size() <= 50
+      && data.name is string && data.name.size() <= 100
+      && data.businessName is string && data.businessName.size() <= 100
+      && data.whatsapp is string && data.whatsapp.size() <= 30
+      && data.email is string && data.email.size() <= 100
+      && data.industry is string && data.industry.size() <= 50
+      && data.channels is list && data.channels.size() <= 20
+      && data.replyDelay is string && data.replyDelay.size() <= 50
+      && data.corePain is string && data.corePain.size() <= 200
+      && data.timeValuation is string && data.timeValuation.size() <= 100
+      && (!data.keys().hasAny(['stockTracking']) || (data.stockTracking is string && data.stockTracking.size() <= 200))
+      && (!data.keys().hasAny(['paymentVerification']) || (data.paymentVerification is string && data.paymentVerification.size() <= 200))
+      && (!data.keys().hasAny(['customerRetention']) || (data.customerRetention is string && data.customerRetention.size() <= 200))
+      && data.revenueLeakage is number
+      && data.syncedToSheets is bool
+      && (!data.keys().hasAny(['booking']) || (
+            data.booking is map 
+            && data.booking.date is string && data.booking.date.size() <= 20
+            && data.booking.time is string && data.booking.time.size() <= 20
+            && (!data.booking.keys().hasAny(['notes']) || (data.booking.notes is string && data.booking.notes.size() <= 500))
+            && (!data.booking.keys().hasAny(['meetLink']) || (data.booking.meetLink is string && data.booking.meetLink.size() <= 500))
+         ));
+    }
+
+    // 4. leads collection rule definition
+    match /leads/{leadId} {
+      allow get: if isValidId(leadId);
+      allow list: if true;
+      allow create: if isValidId(leadId) && incoming().id == leadId && isValidLead(incoming());
+      allow update: if isValidId(leadId) && incoming().id == leadId && isValidLead(incoming());
+      allow delete: if isValidId(leadId);
+    }
+
+    // 5. config collection rule definition
+    match /config/{configId} {
+      allow read, write: if true;
+    }
+  }
+}

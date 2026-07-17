@@ -1,0 +1,119 @@
+{
+  "entities": {
+    "QuizLead": {
+      "title": "QuizLead",
+      "description": "Information about a SME lead who completed the diagnostic quiz",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the lead"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp when the quiz was submitted"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Name of the business owner/representative"
+        },
+        "businessName": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Name of the business"
+        },
+        "whatsapp": {
+          "type": "string",
+          "maxLength": 30,
+          "description": "WhatsApp number"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 100,
+          "description": "Email address"
+        },
+        "industry": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Industry sector"
+        },
+        "channels": {
+          "type": "array",
+          "description": "Channels currently used by the SME"
+        },
+        "replyDelay": {
+          "type": "string",
+          "description": "How long it takes the business to reply to messages"
+        },
+        "corePain": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Core pain point of the business"
+        },
+        "timeValuation": {
+          "type": "string",
+          "description": "How the business owner values their time"
+        },
+        "stockTracking": {
+          "type": "string",
+          "description": "How the business tracks stock across storefronts and online channels"
+        },
+        "paymentVerification": {
+          "type": "string",
+          "description": "How the business verifies bank transfer payments"
+        },
+        "customerRetention": {
+          "type": "string",
+          "description": "What customer retention and follow-up strategy is used"
+        },
+        "revenueLeakage": {
+          "type": "integer",
+          "description": "Calculated annual revenue leakage in Naira"
+        },
+        "booking": {
+          "type": "object",
+          "description": "Scheduled diagnostic consultation details",
+          "properties": {
+            "date": {
+              "type": "string"
+            },
+            "time": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string",
+              "maxLength": 500
+            }
+          }
+        },
+        "syncedToSheets": {
+          "type": "boolean",
+          "description": "Whether the lead has been successfully synced to Google Sheets"
+        }
+      },
+      "required": [
+        "id",
+        "timestamp",
+        "name",
+        "businessName",
+        "whatsapp",
+        "email",
+        "industry",
+        "channels",
+        "replyDelay",
+        "corePain",
+        "timeValuation",
+        "revenueLeakage",
+        "syncedToSheets"
+      ]
+    }
+  },
+  "firestore": {
+    "leads/{leadId}": {
+      "schema": "QuizLead",
+      "description": "Collection of diagnostic quiz leads and submissions"
+    }
+  }
+}
