@@ -1,58 +1,64 @@
-# 🌌 RetailFlow OS
+# 🌌 RetailFlow OS (Fluxa Edition)
 
-### **The Intelligent SME Assessment Funnel & Automated Scheduling Engine**
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
+[![Platform](https://img.shields.io/badge/platform-React%20%7C%20Vite%20%7C%20Firebase-lightgrey.svg)]()
 
-RetailFlow OS is an open-source, highly optimized client-acquisition and business intelligence platform designed specifically for Small and Medium Enterprises (SMEs). Built with a refined **obsidian dark-mode aesthetic**, it bridges the gap between high-fidelity interactive diagnostics and zero-friction client scheduling.
+### **Enterprise-Grade SME Intelligence, Dynamic Commerce, & Autonomous Google Workspace Orchestration**
 
-The system solves the ultimate funnel conversion killer: **Google OAuth authorization friction**. By implementing a highly secure **Single-Admin Shared Integration Architecture**, customers complete assessments, receive immediate diagnostic ratings, and schedule live virtual sessions with automated Google Meet video links—without ever encountering a Google sign-in prompt.
+**RetailFlow OS** is an open-source business operation and customer intelligence platform designed to empower Small and Medium Enterprises (SMEs). Built with the highly refined, high-contrast, light-themed **Fluxa Design System**, it combines visual elegance with high-impact utility.
+
+The platform bridges the gap between interactive lead-generation diagnostics, dynamic retail checkout, and automated scheduling systems, solving a critical conversion bottleneck: **Google OAuth authorization friction**. By implementing a secure **Single-Admin Shared Integration Architecture**, customers complete assessments, shop for high-ticket items, chat with an AI copilot, and book live sessions with auto-generated Google Meet video rooms—all without ever encountering a Google OAuth prompt.
 
 ---
 
 ## 💎 The Vision & Core Greatness
 
-In traditional marketing funnels, capturing rich lead qualification data while securing high-intent bookings is a massive structural bottleneck. Traditional booking systems force the lead to jump through authorization hops or leave the browser to check an inbox. 
+Traditional enterprise systems are fragmented, requiring distinct pipelines for CRM, scheduling, checkout, and client diagnostics. They introduce high friction, forcing clients through multiple browser tabs, app downloads, and login sequences.
 
-**RetailFlow OS** reimagines this entire user journey into a single, cohesive, fluid browser container:
+**RetailFlow OS** consolidates this entire workspace into a unified, fluid, single-screen operational hub:
 
-1. **High-Density Business Assessment**: An elegant 9-step responsive interface that gathers precise operational metrics, growth constraints, and technology needs.
-2. **Instant Cognitive Feedback**: Immediate custom grading algorithms calculate structural scores client-side, giving the customer instant gratification and a clear visual overview of their business gaps.
-3. **No-Friction Calendar Reservation**: A calendar booking utility that queries and schedules directly onto the company's master schedule instantly, generating Google Meet video links automatically.
-4. **Zero-Setup Client Intake**: The consumer is treated with extreme respect—absolutely no permissions, forms, or calendar logins are requested of them. They complete the assessment, pick their slot, and receive their invite.
+1. **SME Diagnostic Funnel**: An elegant, responsive, multi-step assessment that evaluates operational health, calculates growth scores client-side, and delivers immediate diagnostic value to leads.
+2. **Dynamic Retail Storefront**: A customer-facing catalog optimized for premium electronics, featuring local delivery logic (Lagos express fleet), volume discounts, custom promotional codes, and live delivery trackers.
+3. **Aisha AI Concierge**: An embedded shopper copilot powered by natural language processing, assisting buyers with live product recommendations, item comparison (e.g. MacBook vs. Chromebook), and instant in-chat "Add to Cart" checkout actions.
+4. **Zero-Friction Master Scheduling**: Customers reserve virtual sessions directly onto the business master calendar. The system auto-injects dynamic Google Meet links and records assessment metrics into a centralized Google Sheets ledger.
+5. **Real-time Competitor Benchmarking**: An integrated scraper dashboard benchmarking active prices from major regional electronics competitors (Slot, Pointek, Jumia), enabling merchants to invoke dynamic 1-click price beating algorithms.
 
 ---
 
 ## 🎨 Visual Identity & UX Engineering
 
-The visual interface is heavily influenced by modern minimalist design principles, prioritizing clean visual hierarchy and absolute focus:
+RetailFlow OS features the **Fluxa Design System**—a modern light-mode design language designed to maximize readability, maintain visual balance, and encourage customer conversion:
 
-* **Obsidian Slate Theme**: Styled with a deep charcoal background combined with high-contrast text layers and subtle amber interactive highlights.
-* **Generous Negative Space**: Layouts are framed with expansive padding, drawing the eye naturally to individual assessment blocks and avoiding cognitive fatigue.
-* **Fluid Layout Physics**: Built with native framer-motion animations that handle step-by-step navigation, toggle states, and visual expansions with sub-millisecond tactile responses.
-* **Responsive Fluidity**: Scaled dynamically with responsive Tailwind containers to ensure a consistent premium presentation across mobile browsers, tablets, and desktop displays.
+* **High-Contrast Slate-White Theme**: Soft off-white backdrops (`bg-slate-50`, `bg-white`) paired with sharp obsidian-colored slate text (`text-slate-950`) and deep blue interactive anchors (`text-blue-700`).
+* **Symmetric Geometric Framing**: Elegant borders, container lines, and structural sidebars that focus user attention on interactive elements while maintaining spacious negative padding.
+* **Fluid UI Physics**: Native, responsive enter animations and layout transitions (using `motion` and keyframes) that respond to click gestures with satisfying tactical responses.
+* **Responsive Density**: Tailored for both high-density desktop dashboards (sidebars, multi-column analytics, bento-grids) and comfortable mobile touch targets (44px standard).
 
 ---
 
-## ⚙️ Advanced System Architecture
+## ⚙️ System Architecture & Data Flow
 
-The technical magic of RetailFlow OS lies in how it proxies Google Workspace credentials, turning client-side requests into secure, authenticated operations on behalf of the company owner.
+At the core of RetailFlow OS is its secure credential proxying strategy. The owner performs a secure Google Workspace authentication **once** inside the protected Admin panel. The resulting OAuth token and spreadsheet targets are saved securely in Firestore. Client-side customer actions are then proxied and authorized on behalf of the company instantly.
 
 ```text
  ┌─────────────────────────────────────────────────────────────┐
  │                         CLIENT VIEW                         │
- │  • Completes 9-Step Interactive Assessment                  │
- │  • Receives Immediate Algorithmic Diagnostic Score          │
- │  • Chooses Available Booking Date & Time slot               │
+ │  • Takes 9-Step Assessment & Shops Premium Electronics      │
+ │  • Chats with Aisha AI Concierge & Confirms Cart Checkout   │
+ │  • Reserves Calendar Booking (Ikeja/Lekki Logistics)        │
  └──────────────────────────────┬──────────────────────────────┘
                                 │
-                    1. Fetch Active Admin Credentials
+                     1. Fetch Active Admin Credentials
                                 ▼
  ┌─────────────────────────────────────────────────────────────┐
  │                     FIREBASE FIRESTORE                      │
- │  • Securely houses diagnostic submissions (leads)           │
- │  • Syncs and preserves active Admin OAuth config state       │
+ │  • Securely houses leads, customer logs, and orders         │
+ │  • Persists active Admin OAuth config & sheets token        │
+ │  • Syncs data securely across devices                       │
  └──────────────────────────────┬──────────────────────────────┘
                                 │
-                    2. Invoke Proxied Workspace APIs
+                     2. Invoke Proxied Workspace APIs
                                 ▼
  ┌─────────────────────────────────────────────────────────────┐
  │                   GOOGLE WORKSPACE ENGINE                   │
@@ -63,20 +69,20 @@ The technical magic of RetailFlow OS lies in how it proxies Google Workspace cre
 ```
 
 ### Architectural Highlights:
-* **Token Siphoning**: The owner securely logs in *once* on the private admin view. The active access token and associated Google Sheet target ID are encrypted and stored in Firestore (`config/google`).
-* **Real-Time Orchestration**: When a customer books a slot, the system retrieves the owner's configurations, calls the Google Calendar and Sheets APIs, creates the calendar invitation, generates a Google Meet video conference link, and appends the rich data row to the target spreadsheet—all in under 1.5 seconds.
-* **Fail-Safe Integrity**: Built with client-side state caching (localStorage) fallbacks, ensuring that in the rare event of network errors or API exhaustion, the client's assessment data and contact parameters are preserved safely.
+* **OAuth Token Siphoning**: Eliminates the requirement for the consumer to have or log into a Google account. The system reads and schedules slots on the business calendar seamlessly using the stored token.
+* **Fail-Safe Client Caching**: Uses robust local fallback state managers (`localStorage`). If network exceptions or API limits are met, client assessments and cart structures are preserved safely to prevent data loss.
+* **Adaptive Price Optimization**: The competitor benchmarking module queries live APIs and suggests margin tuning steps. A single click calculates optimal undercuts to keep products positioned competitively.
 
 ---
 
-## 🛠️ Built with the Modern Web Stack
+## 🛠️ Built with the Modern Open-Source Stack
 
-* **React 18** — Declarative component hierarchy and fast local rendering.
-* **Vite** — High-speed asset pipeline and compilation.
-* **Tailwind CSS** — Precise, low-overhead visual utility styling.
-* **Firebase (Firestore & Auth)** — Real-time synchronization gate and token persistence.
-* **Framer Motion** — Native-feeling physical transition animations.
-* **Lucide Icons** — Lightweight, razor-sharp vector visual assets.
+* **React 18** — High-fidelity declarative view components and robust hook states.
+* **Vite** — Lightning-fast build speeds and static asset compilation.
+* **Tailwind CSS** — Utilitarian, low-overhead layouts and responsive typography.
+* **Firebase (Auth & Firestore)** — Real-time persistence layer and encrypted token state management.
+* **Recharts** — Responsive, clean data visualizations for sales velocity and daily analytics.
+* **Lucide Icons** — Beautiful, lightweight geometric SVG vector graphics.
 
 ---
 

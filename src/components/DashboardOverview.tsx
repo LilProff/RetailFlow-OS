@@ -183,57 +183,57 @@ export default function DashboardOverview({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Metric 1 */}
-        <div className="glass-panel glass-highlight rounded-xl p-6 flex flex-col relative overflow-hidden group">
-          <div className="absolute top-4 right-4 text-green-400">
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 flex flex-col relative overflow-hidden group shadow-sm">
+          <div className="absolute top-4 right-4 text-green-600">
             <TrendingUp className="w-5 h-5" />
           </div>
-          <span className="font-mono text-xs text-on-surface-variant uppercase tracking-wider mb-2">
+          <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-2 block">
             Total Revenue (Today)
           </span>
-          <span className="text-3xl font-bold text-white tracking-tight">
-            ₦ {totalRevenueToday.toLocaleString()}
+          <span className="text-3xl font-black text-slate-950 tracking-tight">
+            ₦{totalRevenueToday.toLocaleString()}
           </span>
-          <div className="mt-4 flex items-center gap-1.5 text-xs text-green-400">
+          <div className="mt-4 flex items-center gap-1.5 text-xs text-green-600 font-semibold">
             <span>+12.5% vs yesterday</span>
           </div>
         </div>
 
         {/* Metric 2 */}
-        <div className="glass-panel glass-highlight rounded-xl p-6 flex flex-col">
-          <span className="font-mono text-xs text-on-surface-variant uppercase tracking-wider mb-2">
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 flex flex-col shadow-sm">
+          <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-2 block">
             Active Orders Pipeline
           </span>
-          <span className="text-3xl font-bold text-white tracking-tight">
+          <span className="text-3xl font-black text-slate-950 tracking-tight">
             {orders.length}
           </span>
           <div className="mt-4 flex gap-2">
-            <span className="text-[10px] bg-blue-500/10 text-[#3B82F6] px-2 py-0.5 rounded border border-blue-500/20 font-mono">
+            <span className="text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full border border-blue-100 font-mono font-bold">
               {newOrdersCount} New
             </span>
-            <span className="text-[10px] bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded border border-cyan-500/20 font-mono">
+            <span className="text-[10px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full border border-sky-100 font-mono font-bold">
               {processingCount} Processing
             </span>
           </div>
         </div>
 
         {/* AI Insights Card */}
-        <div className="glass-panel rounded-xl p-6 flex flex-col lg:col-span-2 relative overflow-hidden ai-glow transition-all cursor-default border-blue-500/30">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none" />
+        <div className="bg-white border border-blue-200 rounded-2xl p-6 flex flex-col lg:col-span-2 relative overflow-hidden shadow-sm group">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] to-transparent pointer-events-none" />
           <div className="flex items-start justify-between mb-2">
-            <div className="flex items-center gap-2 text-[#3B82F6]">
+            <div className="flex items-center gap-2 text-blue-700">
               <Sparkles className="w-4 h-4 animate-pulse" />
-              <span className="font-mono text-xs uppercase tracking-wider font-semibold">
+              <span className="font-mono text-[10px] uppercase tracking-wider font-bold">
                 AI Cognitive Assistant Active
               </span>
             </div>
-            <span className="text-[10px] font-mono bg-[#161618] px-2 py-0.5 rounded border border-[#27272A] text-on-surface-variant">
+            <span className="text-[10px] font-mono bg-slate-50 px-2.5 py-0.5 rounded-full border border-slate-200 text-slate-500 font-semibold">
               Real-time feed
             </span>
           </div>
-          <h3 className="text-lg font-bold text-white mb-1">
+          <h3 className="text-base font-black text-slate-950 mb-1">
             Dynamic Lagos pricing recommended
           </h3>
-          <p className="text-xs text-on-surface-variant line-clamp-2 mt-1">
+          <p className="text-xs text-slate-500 line-clamp-2 mt-1 font-light">
             Competitor pricing alerts detected a ₦25,000 drop at Pointek Ikeja for iPhone 15 Pro. Recommend a promotional draft to <strong>Emeka Nnamdi</strong> to secure his bulk purchase today.
           </p>
           <div className="mt-4 pt-2 flex gap-3">
@@ -242,11 +242,11 @@ export default function DashboardOverview({
                 setSelectedSender('Emeka Nnamdi');
                 setReplyInput("Hi Emeka, I can apply a special dynamic discount of ₦20,000 per unit for your bulk devs order today.");
               }}
-              className="text-[11px] font-mono font-bold text-black bg-[#3B82F6] hover:bg-blue-600 px-3 py-1.5 rounded transition-all cursor-pointer"
+              className="text-[11px] font-mono font-bold text-white bg-blue-700 hover:bg-blue-800 px-3 py-1.5 rounded-xl transition-all cursor-pointer shadow-sm"
             >
               Draft WhatsApp Offer
             </button>
-            <button className="text-[11px] font-mono text-[#3B82F6] hover:text-blue-400 transition-colors">
+            <button className="text-[11px] font-mono font-bold text-blue-700 hover:text-blue-800 transition-colors">
               Compare Price Feeds
             </button>
           </div>
@@ -261,14 +261,14 @@ export default function DashboardOverview({
         <div className="xl:col-span-2 space-y-6">
           
           {/* Recent Orders table widget */}
-          <div className="glass-panel glass-highlight rounded-xl flex flex-col overflow-hidden">
+          <div className="bg-white border border-slate-200/80 rounded-2xl flex flex-col overflow-hidden shadow-sm">
             
-            <div className="p-4 border-b border-[#27272A] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="p-4 border-b border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <ShoppingCart className="w-5 h-5 text-[#3B82F6]" /> Recent Sales Pipeline
+                <h3 className="text-base font-black text-slate-950 flex items-center gap-2">
+                  <ShoppingCart className="w-5 h-5 text-blue-700" /> Recent Sales Pipeline
                 </h3>
-                <p className="text-xs text-on-surface-variant">
+                <p className="text-xs text-slate-500 font-light">
                   Click a row to cycle status (NEW → CONFIRMED → SHIPPED → DELIVERED). Click ID to track.
                 </p>
               </div>
@@ -276,13 +276,13 @@ export default function DashboardOverview({
               <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
                 {/* Search */}
                 <div className="relative flex-1 sm:flex-initial">
-                  <Search className="w-4 h-4 text-on-surface-variant absolute left-3 top-1/2 -translate-y-1/2" />
+                  <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                   <input 
                     type="text" 
                     placeholder="Search client/product..." 
                     value={orderSearch}
                     onChange={(e) => setOrderSearch(e.target.value)}
-                    className="w-full sm:w-48 bg-[#0A0A0B] border border-[#27272A] text-xs rounded-lg pl-9 pr-3 py-1.5 focus:border-[#3B82F6] outline-none text-white"
+                    className="w-full sm:w-48 bg-slate-50 border border-slate-200 text-xs rounded-xl pl-9 pr-3 py-1.5 focus:border-blue-700 outline-none text-slate-900"
                   />
                 </div>
                 
@@ -290,7 +290,7 @@ export default function DashboardOverview({
                 <select 
                   value={statusFilter} 
                   onChange={(e) => setStatusFilter(e.target.value as any)}
-                  className="bg-[#0A0A0B] border border-[#27272A] text-xs rounded-lg px-2.5 py-1.5 focus:border-[#3B82F6] outline-none text-on-surface-variant cursor-pointer"
+                  className="bg-slate-50 border border-slate-200 text-xs rounded-xl px-2.5 py-1.5 focus:border-blue-700 outline-none text-slate-600 cursor-pointer"
                 >
                   <option value="ALL">All Statuses</option>
                   <option value="NEW">New</option>
@@ -301,7 +301,7 @@ export default function DashboardOverview({
 
                 <button 
                   onClick={() => setIsModalOpen(true)}
-                  className="bg-[#3B82F6] text-white hover:bg-blue-600 px-3.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 cursor-pointer transition-colors"
+                  className="bg-blue-700 text-white hover:bg-blue-800 px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 cursor-pointer transition-colors shadow-sm"
                 >
                   <Plus className="w-4 h-4" /> New Record
                 </button>
@@ -312,19 +312,19 @@ export default function DashboardOverview({
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-[#27272A] bg-[#161618]/50 font-mono text-[10px] uppercase tracking-wider text-on-surface-variant">
-                    <th className="p-4 font-semibold">ID</th>
-                    <th className="p-4 font-semibold">Customer</th>
-                    <th className="p-4 font-semibold">Product</th>
-                    <th className="p-4 font-semibold">Channel</th>
-                    <th className="p-4 font-semibold">Status</th>
-                    <th className="p-4 font-semibold text-right">Value (₦)</th>
+                  <tr className="border-b border-slate-200 bg-slate-50 font-mono text-[10px] uppercase tracking-wider text-slate-500">
+                    <th className="p-4 font-bold">ID</th>
+                    <th className="p-4 font-bold">Customer</th>
+                    <th className="p-4 font-bold">Product</th>
+                    <th className="p-4 font-bold">Channel</th>
+                    <th className="p-4 font-bold">Status</th>
+                    <th className="p-4 font-bold text-right">Value (₦)</th>
                   </tr>
                 </thead>
-                <tbody className="text-xs divide-y divide-[#27272A]/40">
+                <tbody className="text-xs divide-y divide-slate-100">
                   {filteredOrders.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="p-8 text-center text-on-surface-variant">
+                      <td colSpan={6} className="p-8 text-center text-slate-400">
                         No orders match your active search filters.
                       </td>
                     </tr>
@@ -338,14 +338,14 @@ export default function DashboardOverview({
                       return (
                         <tr 
                           key={order.id}
-                          className="hover:bg-[#161618]/60 transition-colors cursor-pointer group"
+                          className="hover:bg-slate-50/80 transition-colors cursor-pointer group"
                         >
                           <td 
                             onClick={(e) => {
                               e.stopPropagation();
                               onSelectOrder(order);
                             }}
-                            className="p-4 font-mono text-cyan-400 font-bold hover:underline"
+                            className="p-4 font-mono text-blue-700 font-extrabold hover:underline"
                           >
                             <span className="flex items-center gap-1">
                               {order.id}
@@ -356,12 +356,12 @@ export default function DashboardOverview({
                             onClick={() => cycleStatus(order.id, order.status)}
                             className="p-4"
                           >
-                            <div className="font-semibold text-white">{order.customerName}</div>
-                            <div className="text-[10px] text-on-surface-variant">{order.location}</div>
+                            <div className="font-bold text-slate-950">{order.customerName}</div>
+                            <div className="text-[10px] text-slate-400 font-light">{order.location}</div>
                           </td>
                           <td 
                             onClick={() => cycleStatus(order.id, order.status)}
-                            className="p-4 text-on-surface-variant"
+                            className="p-4 text-slate-600 font-medium"
                           >
                             {order.product}
                           </td>
@@ -369,7 +369,7 @@ export default function DashboardOverview({
                             onClick={() => cycleStatus(order.id, order.status)}
                             className="p-4"
                           >
-                            <span className="inline-flex items-center gap-1 bg-[#131314] px-2 py-0.5 rounded text-[10px] border border-[#27272A]">
+                            <span className="inline-flex items-center gap-1 bg-slate-50 px-2 py-0.5 rounded-full text-[10px] border border-slate-200 text-slate-600 font-medium">
                               {order.channel}
                             </span>
                           </td>
@@ -377,24 +377,24 @@ export default function DashboardOverview({
                             onClick={() => cycleStatus(order.id, order.status)}
                             className="p-4"
                           >
-                            <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
-                              isNew ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20' :
-                              isConfirmed ? 'bg-blue-500/10 text-[#3B82F6] border border-blue-500/20' :
-                              isShipped ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' :
-                              'bg-green-500/10 text-green-400 border border-green-500/20'
+                            <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold ${
+                              isNew ? 'bg-cyan-50 text-cyan-700 border border-cyan-100' :
+                              isConfirmed ? 'bg-blue-50 text-blue-700 border border-blue-100' :
+                              isShipped ? 'bg-indigo-50 text-indigo-700 border border-indigo-100' :
+                              'bg-green-50 text-green-700 border border-green-100'
                             }`}>
                               <span className={`w-1.5 h-1.5 rounded-full ${
-                                isNew ? 'bg-cyan-400 animate-pulse' :
-                                isConfirmed ? 'bg-blue-400' :
-                                isShipped ? 'bg-indigo-400' :
-                                'bg-green-400'
+                                isNew ? 'bg-cyan-500 animate-pulse' :
+                                isConfirmed ? 'bg-blue-500' :
+                                isShipped ? 'bg-indigo-500' :
+                                'bg-green-500'
                               }`} />
                               {order.status}
                             </span>
                           </td>
                           <td 
                             onClick={() => cycleStatus(order.id, order.status)}
-                            className="p-4 text-right font-mono font-bold text-white"
+                            className="p-4 text-right font-mono font-extrabold text-slate-950"
                           >
                             ₦{order.value.toLocaleString()}
                           </td>
@@ -406,8 +406,8 @@ export default function DashboardOverview({
               </table>
             </div>
 
-            <div className="p-3 border-t border-[#27272A] text-center bg-[#131314]/30">
-              <span className="text-[11px] text-on-surface-variant">
+            <div className="p-3 border-t border-slate-100 text-center bg-slate-50">
+              <span className="text-[11px] text-slate-400 font-medium">
                 Showing {filteredOrders.length} of {orders.length} transaction logs.
               </span>
             </div>
@@ -415,31 +415,31 @@ export default function DashboardOverview({
           </div>
 
           {/* Unified Inbox widget */}
-          <div className="glass-panel glass-highlight rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-3">
+          <div className="bg-white border border-slate-200/80 rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-3 shadow-sm">
             
             {/* Thread side list */}
-            <div className="border-r border-[#27272A] bg-[#161618]/30 flex flex-col">
-              <div className="p-4 border-b border-[#27272A] flex items-center justify-between">
-                <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
-                  <MessageSquare className="w-4 h-4 text-cyan-400" /> Unified Inbox
+            <div className="border-r border-slate-100 bg-slate-50/50 flex flex-col">
+              <div className="p-4 border-b border-slate-200 flex items-center justify-between">
+                <h4 className="text-xs font-bold text-slate-900 uppercase font-mono tracking-wider flex items-center gap-1.5">
+                  <MessageSquare className="w-4 h-4 text-blue-700" /> Unified Inbox
                 </h4>
                 <div className="flex gap-1">
                   <button 
                     onClick={() => setActiveInboxChannel('ALL')}
-                    className={`px-2 py-0.5 rounded text-[10px] font-mono ${activeInboxChannel === 'ALL' ? 'bg-[#3B82F6] text-white' : 'text-on-surface-variant hover:text-white'}`}
+                    className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold ${activeInboxChannel === 'ALL' ? 'bg-blue-700 text-white shadow-sm' : 'text-slate-500 hover:text-slate-900'}`}
                   >
                     All
                   </button>
                   <button 
                     onClick={() => setActiveInboxChannel('WhatsApp')}
-                    className={`px-2 py-0.5 rounded text-[10px] font-mono ${activeInboxChannel === 'WhatsApp' ? 'bg-green-600 text-white' : 'text-on-surface-variant hover:text-white'}`}
+                    className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold ${activeInboxChannel === 'WhatsApp' ? 'bg-green-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-900'}`}
                   >
                     WA
                   </button>
                 </div>
               </div>
 
-              <div className="flex-1 max-h-[220px] overflow-y-auto divide-y divide-[#27272A]/30">
+              <div className="flex-1 max-h-[220px] overflow-y-auto divide-y divide-slate-100">
                 {threads.map(sender => {
                   const lastMsg = messages.filter(m => m.sender === sender).pop();
                   const isSelected = sender === selectedSender;
@@ -447,13 +447,13 @@ export default function DashboardOverview({
                     <div 
                       key={sender}
                       onClick={() => setSelectedSender(sender)}
-                      className={`p-3 cursor-pointer transition-all ${isSelected ? 'bg-[#3B82F6]/10 border-l-2 border-[#3B82F6]' : 'hover:bg-[#161618]'}`}
+                      className={`p-3 cursor-pointer transition-all ${isSelected ? 'bg-blue-50/60 border-l-2 border-blue-700 font-semibold' : 'hover:bg-slate-50/40'}`}
                     >
                       <div className="flex justify-between items-center mb-0.5">
-                        <span className="font-bold text-xs text-white truncate max-w-[120px]">{sender}</span>
-                        <span className="text-[9px] font-mono text-on-surface-variant">{lastMsg?.timestamp}</span>
+                        <span className="font-bold text-xs text-slate-950 truncate max-w-[120px]">{sender}</span>
+                        <span className="text-[9px] font-mono text-slate-400 font-semibold">{lastMsg?.timestamp}</span>
                       </div>
-                      <p className="text-[10px] text-on-surface-variant truncate">
+                      <p className="text-[10px] text-slate-500 truncate font-light">
                         {lastMsg?.text}
                       </p>
                     </div>
@@ -463,20 +463,20 @@ export default function DashboardOverview({
             </div>
 
             {/* Live Chat Thread screen */}
-            <div className="md:col-span-2 flex flex-col h-[300px] justify-between bg-[#131314]">
+            <div className="md:col-span-2 flex flex-col h-[300px] justify-between bg-white">
               
-              <div className="p-3 border-b border-[#27272A] flex items-center justify-between bg-[#161618]/60">
+              <div className="p-3 border-b border-slate-150 flex items-center justify-between bg-slate-50/50">
                 <div>
-                  <span className="font-bold text-xs text-white">{selectedSender}</span>
-                  <p className="text-[9px] text-on-surface-variant">WhatsApp API handshake verified</p>
+                  <span className="font-bold text-xs text-slate-950">{selectedSender}</span>
+                  <p className="text-[9px] text-slate-400 font-medium">WhatsApp API handshake verified</p>
                 </div>
-                <span className="text-[9px] font-mono bg-green-500/10 text-green-400 border border-green-500/20 px-2 py-0.5 rounded">
+                <span className="text-[9px] font-mono bg-green-50 text-green-700 border border-green-100 px-2 py-0.5 rounded-full font-bold">
                   Connected
                 </span>
               </div>
 
               {/* Message flow */}
-              <div className="flex-1 p-4 overflow-y-auto space-y-3 scrollbar-hide bg-[#0A0A0B]/40">
+              <div className="flex-1 p-4 overflow-y-auto space-y-3 scrollbar-hide bg-slate-50/30">
                 {filteredMessages.map(m => {
                   const isStaff = !m.isIncoming;
                   return (
@@ -484,13 +484,13 @@ export default function DashboardOverview({
                       key={m.id}
                       className={`flex ${isStaff ? 'justify-end' : 'justify-start'}`}
                     >
-                      <div className={`max-w-[80%] rounded-xl p-2.5 text-xs border ${
+                      <div className={`max-w-[80%] rounded-2xl p-2.5 text-xs border ${
                         isStaff 
-                          ? 'bg-blue-600/15 border-blue-500/30 text-white rounded-tr-none' 
-                          : 'bg-[#161618] border-[#27272A] text-on-surface rounded-tl-none'
+                          ? 'bg-blue-50 border-blue-100 text-blue-900 rounded-tr-none' 
+                          : 'bg-white border-slate-200 text-slate-800 rounded-tl-none shadow-sm'
                       }`}>
-                        <p className="leading-relaxed">{m.text}</p>
-                        <span className="text-[8px] font-mono text-on-surface-variant block mt-1 text-right">
+                        <p className="leading-relaxed font-light">{m.text}</p>
+                        <span className="text-[8px] font-mono text-slate-400 block mt-1 text-right font-medium">
                           {m.timestamp}
                         </span>
                       </div>
@@ -500,17 +500,17 @@ export default function DashboardOverview({
               </div>
 
               {/* Chat Input */}
-              <form onSubmit={handleSendInboxReply} className="p-3 border-t border-[#27272A] bg-[#161618]/30 flex gap-2">
+              <form onSubmit={handleSendInboxReply} className="p-3 border-t border-slate-200 bg-slate-50/30 flex gap-2">
                 <input 
                   type="text"
                   placeholder={`Draft dynamic WhatsApp reply to ${selectedSender}...`}
                   value={replyInput}
                   onChange={(e) => setReplyInput(e.target.value)}
-                  className="flex-1 bg-[#0A0A0B] border border-[#27272A] text-xs rounded-lg px-3 py-2 outline-none text-white focus:border-[#3B82F6]"
+                  className="flex-1 bg-white border border-slate-200 text-xs rounded-xl px-3 py-2 outline-none text-slate-900 focus:border-blue-700 placeholder-slate-400"
                 />
                 <button 
                   type="submit"
-                  className="bg-[#3B82F6] hover:bg-blue-600 text-white p-2 rounded-lg transition-colors cursor-pointer"
+                  className="bg-blue-700 hover:bg-blue-800 text-white p-2.5 rounded-xl transition-colors cursor-pointer shadow-sm"
                 >
                   <Send className="w-4 h-4" />
                 </button>
@@ -526,24 +526,24 @@ export default function DashboardOverview({
         <div className="space-y-6">
           
           {/* Lead Qualifier list card */}
-          <div className="glass-panel glass-highlight rounded-xl p-4">
+          <div className="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-bold text-sm text-white flex items-center gap-1.5">
-                <Target className="w-4.5 h-4.5 text-indigo-400" /> AI Lead Qualifier Funnel
+              <h3 className="font-bold text-sm text-slate-950 flex items-center gap-1.5">
+                <Target className="w-4.5 h-4.5 text-indigo-700" /> AI Lead Qualifier Funnel
               </h3>
-              <span className="text-[10px] font-mono text-[#3B82F6]">Automation Active</span>
+              <span className="text-[10px] font-mono font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">Automation Active</span>
             </div>
 
             {/* Lead Funnel Tabs */}
-            <div className="flex gap-1.5 border-b border-[#27272A] pb-2 mb-3">
+            <div className="flex gap-1.5 border-b border-slate-100 pb-2 mb-3">
               {(['ALL', 'HOT', 'WARM', 'COLD'] as const).map(score => (
                 <button
                   key={score}
                   onClick={() => setLeadScoreFilter(score)}
-                  className={`text-[9px] font-mono font-bold px-2 py-1 rounded ${
+                  className={`text-[9px] font-mono font-bold px-2.5 py-1 rounded-full ${
                     leadScoreFilter === score 
-                      ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' 
-                      : 'text-on-surface-variant hover:text-white'
+                      ? 'bg-indigo-50 text-indigo-700 border border-indigo-100' 
+                      : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
                   }`}
                 >
                   {score}
@@ -562,26 +562,26 @@ export default function DashboardOverview({
                     <div 
                       key={lead.id}
                       onClick={() => triggerLeadAction(lead)}
-                      className="p-3 rounded-lg bg-[#161618] border border-[#27272A] hover:border-indigo-500/50 transition-all cursor-pointer group"
+                      className="p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:bg-white transition-all cursor-pointer group shadow-sm"
                     >
                       <div className="flex justify-between items-start mb-1">
-                        <span className="font-bold text-xs text-white group-hover:text-indigo-400 transition-colors">
+                        <span className="font-bold text-xs text-slate-950 group-hover:text-indigo-700 transition-colors">
                           {lead.name}
                         </span>
-                        <span className={`text-[8px] font-mono font-bold px-1.5 py-0.5 rounded ${
-                          isHot ? 'bg-red-500/10 text-red-400 border border-red-500/20' :
-                          isWarm ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' :
-                          'bg-zinc-500/10 text-zinc-400 border border-zinc-500/20'
+                        <span className={`text-[8px] font-mono font-bold px-1.5 py-0.5 rounded-full ${
+                          isHot ? 'bg-red-50 text-red-700 border border-red-100' :
+                          isWarm ? 'bg-amber-50 text-amber-700 border border-amber-100' :
+                          'bg-slate-100 text-slate-500 border border-slate-200'
                         }`}>
                           {lead.score}
                         </span>
                       </div>
-                      <p className="text-[10px] text-on-surface-variant mb-2">
+                      <p className="text-[10px] text-slate-500 mb-2 font-light line-clamp-2">
                         {lead.summary}
                       </p>
-                      <div className="flex items-center justify-between text-[9px] font-mono text-on-surface-variant border-t border-[#27272A]/40 pt-1.5">
+                      <div className="flex items-center justify-between text-[9px] font-mono text-slate-400 border-t border-slate-200/40 pt-1.5 font-bold">
                         <span>Tag: {lead.statusTag}</span>
-                        <span className="text-[#3B82F6] hover:underline">Launch Chat →</span>
+                        <span className="text-blue-700 group-hover:underline">Launch Chat →</span>
                       </div>
                     </div>
                   );
@@ -590,25 +590,25 @@ export default function DashboardOverview({
           </div>
 
           {/* AI Assistant Chat widget */}
-          <div className="glass-panel glass-highlight rounded-xl p-4 flex flex-col border-cyan-500/20">
-            <div className="flex items-center gap-1.5 mb-3 border-b border-[#27272A] pb-2">
-              <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
+          <div className="bg-white border border-slate-200/80 rounded-2xl p-4 flex flex-col shadow-sm">
+            <div className="flex items-center gap-1.5 mb-3 border-b border-slate-100 pb-2">
+              <Sparkles className="w-4 h-4 text-cyan-600 animate-pulse" />
               <div>
-                <h3 className="font-bold text-sm text-white">Dynamic AI Analyst</h3>
-                <p className="text-[8px] font-mono text-on-surface-variant">Antigravity local cognitive loop</p>
+                <h3 className="font-bold text-sm text-slate-950">Dynamic AI Analyst</h3>
+                <p className="text-[8px] font-mono text-slate-400 uppercase font-semibold">Antigravity local cognitive loop</p>
               </div>
             </div>
 
             {/* Conversation list */}
-            <div className="h-[200px] overflow-y-auto space-y-2.5 p-2 rounded-lg bg-[#0A0A0B]/30 mb-3 border border-[#27272A]/40 text-[11px] scrollbar-hide">
+            <div className="h-[200px] overflow-y-auto space-y-2.5 p-2 rounded-xl bg-slate-50 mb-3 border border-slate-200 text-[11px] scrollbar-hide">
               {aiHistory.map((item, idx) => {
                 const isAi = item.sender === 'ai';
                 return (
                   <div key={idx} className={`flex ${isAi ? 'justify-start' : 'justify-end'}`}>
-                    <div className={`p-2 rounded-xl max-w-[90%] border ${
+                    <div className={`p-2 rounded-2xl max-w-[90%] border ${
                       isAi 
-                        ? 'bg-[#161618] border-[#27272A] text-cyan-200' 
-                        : 'bg-cyan-500/15 border-cyan-500/30 text-white'
+                        ? 'bg-white border-slate-200 text-slate-850 shadow-sm' 
+                        : 'bg-cyan-50 border-cyan-100 text-cyan-900 font-medium'
                     }`}>
                       {item.text}
                     </div>
@@ -617,7 +617,7 @@ export default function DashboardOverview({
               })}
               {aiIsTyping && (
                 <div className="flex justify-start">
-                  <div className="bg-[#161618] border border-[#27272A] text-on-surface-variant p-2 rounded-xl text-[10px] italic">
+                  <div className="bg-white border border-slate-200 text-slate-400 p-2 rounded-2xl text-[10px] italic">
                     AI is processing price trends...
                   </div>
                 </div>
@@ -631,11 +631,11 @@ export default function DashboardOverview({
                 placeholder="Ask about MacBook, iPhone stock..." 
                 value={aiChatInput}
                 onChange={(e) => setAiChatInput(e.target.value)}
-                className="flex-1 bg-[#0A0A0B] border border-[#27272A] text-xs rounded-lg px-2.5 py-1.5 outline-none text-white focus:border-cyan-400"
+                className="flex-1 bg-slate-50 border border-slate-200 text-xs rounded-xl px-2.5 py-1.5 outline-none text-slate-900 focus:border-cyan-500 placeholder-slate-400"
               />
               <button 
                 type="submit" 
-                className="bg-cyan-500 text-black hover:bg-cyan-400 px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer transition-colors"
+                className="bg-cyan-50 border border-cyan-200 text-cyan-800 hover:bg-cyan-100 px-3.5 py-1.5 rounded-xl text-xs font-bold cursor-pointer transition-colors"
               >
                 Query
               </button>
@@ -643,21 +643,21 @@ export default function DashboardOverview({
           </div>
 
           {/* Quick Data Analyst Insights */}
-          <div className="glass-panel glass-highlight rounded-xl p-4">
-            <h3 className="font-bold text-sm text-white mb-3">
+          <div className="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm">
+            <h3 className="font-bold text-sm text-slate-950 mb-3">
               Data Analyst Insights
             </h3>
             <div className="space-y-3">
-              <div className="p-2.5 rounded-lg bg-[#161618] border-l-2 border-green-500 text-xs">
-                <div className="font-bold text-white mb-0.5">Top Performer</div>
-                <p className="text-[10px] text-on-surface-variant">
+              <div className="p-2.5 rounded-xl bg-slate-50 border-l-2 border-green-500 text-xs">
+                <div className="font-bold text-slate-900 mb-0.5">Top Performer</div>
+                <p className="text-[10px] text-slate-500 font-light leading-relaxed">
                   <strong>iPhone 15 Pro</strong> is generating 58% of all today's cash velocity, leading ahead of computing gear.
                 </p>
               </div>
 
-              <div className="p-2.5 rounded-lg bg-[#161618] border-l-2 border-cyan-400 text-xs">
-                <div className="font-bold text-white mb-0.5">Trending Sector</div>
-                <p className="text-[10px] text-on-surface-variant">
+              <div className="p-2.5 rounded-xl bg-slate-50 border-l-2 border-cyan-500 text-xs">
+                <div className="font-bold text-slate-900 mb-0.5">Trending Sector</div>
+                <p className="text-[10px] text-slate-500 font-light leading-relaxed">
                   Lagos Island Hub is seeing a 24% spike in portable high-end sound and noise-cancelling headphone requests.
                 </p>
               </div>
@@ -671,23 +671,23 @@ export default function DashboardOverview({
       {/* New Order Modal Dialog */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-[#0A0A0B]/80 backdrop-blur-md" onClick={() => setIsModalOpen(false)} />
+          <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-md animate-fade-in" onClick={() => setIsModalOpen(false)} />
           
-          <div className="relative w-full max-w-md bg-[#161618] rounded-xl border border-[#27272A] p-6 shadow-2xl glass-highlight">
+          <div className="relative w-full max-w-md bg-white rounded-2xl border border-slate-200 p-6 shadow-2xl animate-scale-up">
             <button 
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-on-surface-variant hover:text-white transition-colors cursor-pointer"
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-950 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-              <ShoppingCart className="w-5 h-5 text-[#3B82F6]" /> Add Sales Record
+            <h3 className="text-lg font-black text-slate-950 mb-4 flex items-center gap-2">
+              <ShoppingCart className="w-5 h-5 text-blue-700" /> Add Sales Record
             </h3>
 
             <form onSubmit={handleCreateOrder} className="space-y-4">
               <div>
-                <label className="block text-[11px] font-mono text-on-surface-variant uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1.5 font-bold">
                   Customer Name
                 </label>
                 <input 
@@ -696,12 +696,12 @@ export default function DashboardOverview({
                   placeholder="e.g. Kolawole Davies"
                   value={newCustName}
                   onChange={(e) => setNewCustName(e.target.value)}
-                  className="w-full bg-[#0A0A0B] border border-[#27272A] rounded-lg px-3 py-2 text-sm text-white focus:border-[#3B82F6] outline-none"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:border-blue-700 outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono text-on-surface-variant uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1.5 font-bold">
                   Lagos Location / Hub
                 </label>
                 <input 
@@ -710,19 +710,19 @@ export default function DashboardOverview({
                   placeholder="e.g. Lekki Phase 1, Lagos"
                   value={newCustLoc}
                   onChange={(e) => setNewCustLoc(e.target.value)}
-                  className="w-full bg-[#0A0A0B] border border-[#27272A] rounded-lg px-3 py-2 text-sm text-white focus:border-[#3B82F6] outline-none"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:border-blue-700 outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono text-on-surface-variant uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1.5 font-bold">
                     Product
                   </label>
                   <select 
                     value={newProduct}
                     onChange={(e) => setNewProduct(e.target.value)}
-                    className="w-full bg-[#0A0A0B] border border-[#27272A] rounded-lg px-3 py-2 text-sm text-white focus:border-[#3B82F6] outline-none cursor-pointer"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:border-blue-700 outline-none cursor-pointer"
                   >
                     <option value="iPhone 15 Pro">iPhone 15 Pro</option>
                     <option value="MacBook Air M3">MacBook Air M3</option>
@@ -733,7 +733,7 @@ export default function DashboardOverview({
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono text-on-surface-variant uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1.5 font-bold">
                     Naira Value (₦)
                   </label>
                   <input 
@@ -741,24 +741,24 @@ export default function DashboardOverview({
                     required
                     value={newValue}
                     onChange={(e) => setNewValue(e.target.value)}
-                    className="w-full bg-[#0A0A0B] border border-[#27272A] rounded-lg px-3 py-2 text-sm text-white focus:border-[#3B82F6] outline-none font-mono"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 focus:border-blue-700 outline-none font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono text-on-surface-variant uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1.5 font-bold">
                   Lead Channel
                 </label>
                 <div className="flex gap-4">
                   {(['WhatsApp', 'Instagram', 'Web'] as const).map(ch => (
-                    <label key={ch} className="flex items-center gap-1.5 text-xs text-white cursor-pointer select-none">
+                    <label key={ch} className="flex items-center gap-1.5 text-xs text-slate-700 cursor-pointer select-none font-medium">
                       <input 
                         type="radio" 
                         name="channel" 
                         checked={newChannel === ch}
                         onChange={() => setNewChannel(ch)}
-                        className="text-[#3B82F6] focus:ring-0" 
+                        className="text-blue-700 focus:ring-0 cursor-pointer" 
                       />
                       <span>{ch}</span>
                     </label>
@@ -768,7 +768,7 @@ export default function DashboardOverview({
 
               <button 
                 type="submit"
-                className="w-full bg-[#3B82F6] hover:bg-blue-600 text-white font-bold py-2.5 rounded-lg text-sm transition-all cursor-pointer mt-2"
+                className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2.5 rounded-xl text-sm transition-all cursor-pointer mt-2 shadow-sm"
               >
                 Confirm Order Manifest
               </button>

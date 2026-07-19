@@ -477,41 +477,41 @@ export default function SmeFunnel({
   };
 
   return (
-    <div className="bg-[#0A0A0B] text-[#e5e2e3] min-h-screen font-sans selection:bg-blue-600/30 selection:text-white">
+    <div className="bg-white text-slate-900 min-h-screen font-sans selection:bg-blue-600/10 selection:text-blue-700 relative overflow-x-hidden">
       
       {/* Background Lights */}
-      <div className="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[130px] pointer-events-none z-0" />
-      <div className="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-900/10 rounded-full blur-[130px] pointer-events-none z-0" />
+      <div className="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[130px] pointer-events-none z-0" />
+      <div className="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[130px] pointer-events-none z-0" />
 
       {/* Main Container Header */}
-      <header className="sticky top-0 z-50 glass-panel glass-highlight px-6 h-16 flex items-center justify-between border-b border-[#27272A]/70 backdrop-blur-md">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button 
             onClick={onBackToLanding}
-            className="p-1.5 hover:bg-[#1C1C1F] border border-[#27272A]/40 text-zinc-400 hover:text-white rounded-lg transition-all cursor-pointer"
+            className="p-1.5 hover:bg-slate-100 border border-slate-200 text-slate-500 hover:text-slate-900 rounded-lg transition-all cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
-          <div className="flex items-center gap-2 border-l border-[#27272A]/80 pl-3">
-            <div className="w-7 h-7 rounded bg-[#3B82F6] flex items-center justify-center">
+          <div className="flex items-center gap-2 border-l border-slate-200 pl-3">
+            <div className="w-7 h-7 rounded bg-blue-700 flex items-center justify-center">
               <Sparkles className="w-4 h-4 text-white" />
             </div>
             <div>
-              <span className="font-extrabold text-sm tracking-tight text-white block">SME Growth Hub</span>
-              <span className="text-[9px] font-mono text-cyan-400 block uppercase tracking-widest leading-none">Flow OS Funnel Node</span>
+              <span className="font-extrabold text-sm tracking-tight text-slate-950 block">SME Growth Consultation Form</span>
+              <span className="text-[9px] font-mono text-blue-700 block uppercase tracking-widest leading-none">RetailFlow OS Assessment Node</span>
             </div>
           </div>
         </div>
 
         {/* Clean central tagline for the shared funnel page */}
-        <div className="hidden md:flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs font-mono text-blue-400">
-          <Zap className="w-3.5 h-3.5 text-blue-400 animate-pulse animate-spin-slow" />
+        <div className="hidden md:flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-xs font-mono text-blue-700">
+          <Zap className="w-3.5 h-3.5 text-blue-700 animate-pulse" />
           <span>Operational Efficiency & Automation Audit</span>
         </div>
 
         <button
           onClick={onBackToLanding}
-          className="bg-[#3B82F6] hover:bg-blue-600 text-white px-5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:scale-[1.02] active:scale-95"
+          className="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shadow-md hover:scale-[1.02] active:scale-95"
         >
           Try Interactive Demo OS →
         </button>
@@ -525,26 +525,26 @@ export default function SmeFunnel({
             {/* Playbook Stage Header */}
             {currentStep <= 9 && (
               <div className="text-center space-y-3">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-[10px] font-mono text-blue-400 uppercase tracking-widest font-bold">
-                  <Clock className="w-3.5 h-3.5 animate-spin-slow" />
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-100 rounded-full text-[10px] font-mono text-blue-700 uppercase tracking-widest font-bold">
+                  <Clock className="w-3.5 h-3.5 text-blue-700 animate-spin-slow" />
                   <span>Free 60-Second Business Growth Diagnostic</span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-extrabold text-slate-950 tracking-tight">
                   Calculate Your Revenue Inefficiencies
                 </h2>
-                <p className="text-xs text-zinc-400 max-w-xl mx-auto leading-relaxed">
+                <p className="text-xs text-slate-500 max-w-xl mx-auto leading-relaxed">
                   Discover what manual administrative workflows, delayed chat responses, and spreadsheet coordination are truly costing your operations this month.
                 </p>
  
                 {/* Progressive Flow Tracker bar */}
                 <div className="max-w-md mx-auto pt-4">
-                  <div className="flex justify-between text-[10px] font-mono text-zinc-500 mb-1.5">
+                  <div className="flex justify-between text-[10px] font-mono text-slate-500 mb-1.5">
                     <span>PROGRESS</span>
                     <span>STEP {currentStep} OF 9</span>
                   </div>
-                  <div className="w-full bg-[#18181B] border border-[#27272A] rounded-full h-2 overflow-hidden p-0.5">
+                  <div className="w-full bg-slate-100 border border-slate-200 rounded-full h-2 overflow-hidden p-0.5">
                     <div 
-                      className="bg-gradient-to-r from-blue-500 to-cyan-400 h-full rounded-full transition-all duration-300"
+                      className="bg-gradient-to-r from-blue-700 to-blue-500 h-full rounded-full transition-all duration-300"
                       style={{ width: `${(currentStep / 9) * 100}%` }}
                     />
                   </div>
@@ -554,11 +554,11 @@ export default function SmeFunnel({
 
             {/* STEP 1: Industry Selection */}
             {currentStep === 1 && (
-              <div className="bg-[#131316] border border-[#27272A] rounded-2xl p-6 md:p-8 space-y-6 animate-scale-up">
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 space-y-6 shadow-lg animate-scale-up">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest font-bold">Question 1</span>
-                  <h3 className="text-lg md:text-xl font-bold text-white">What is your business category?</h3>
-                  <p className="text-xs text-zinc-400">Select your industry node to load tailored diagnostic variables and calculation benchmarks.</p>
+                  <span className="text-[10px] font-mono text-blue-700 uppercase tracking-widest font-bold">Question 1</span>
+                  <h3 className="text-lg md:text-xl font-bold text-slate-950">What is your business category?</h3>
+                  <p className="text-xs text-slate-500">Select your industry node to load tailored diagnostic variables and calculation benchmarks.</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -577,16 +577,16 @@ export default function SmeFunnel({
                       }}
                       className={`p-5 text-left border rounded-xl transition-all cursor-pointer group flex flex-col justify-between h-36 ${
                         industry === ind.name 
-                          ? 'bg-[#3B82F6]/10 border-[#3B82F6] text-white' 
-                          : 'bg-[#18181B] border-[#27272A] hover:border-zinc-600 text-zinc-300 hover:text-white'
+                          ? 'bg-blue-50 border-blue-700 text-blue-700 font-bold' 
+                          : 'bg-slate-50 border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-950'
                       }`}
                     >
                       <div>
                         <span className="text-xs font-mono font-bold uppercase tracking-wider block mb-1 opacity-65">NODE</span>
-                        <span className="font-extrabold text-sm block group-hover:text-[#3B82F6] transition-colors">{ind.name}</span>
-                        <span className="text-[10px] text-zinc-400 font-light mt-1.5 block leading-normal line-clamp-3">{ind.desc}</span>
+                        <span className="font-extrabold text-sm block group-hover:text-blue-700 transition-colors">{ind.name}</span>
+                        <span className="text-[10px] text-slate-500 font-light mt-1.5 block leading-normal line-clamp-3">{ind.desc}</span>
                       </div>
-                      <span className="text-[10px] font-mono text-zinc-500 group-hover:text-white self-end transition-colors">Select Node →</span>
+                      <span className="text-[10px] font-mono text-slate-400 group-hover:text-blue-700 self-end transition-colors">Select Node →</span>
                     </button>
                   ))}
                 </div>
@@ -595,11 +595,11 @@ export default function SmeFunnel({
 
             {/* STEP 2: Customer Contact Channels */}
             {currentStep === 2 && (
-              <div className="bg-[#131316] border border-[#27272A] rounded-2xl p-6 md:p-8 space-y-6 animate-scale-up">
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 space-y-6 shadow-lg animate-scale-up">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest font-bold">Question 2</span>
-                  <h3 className="text-lg md:text-xl font-bold text-white">How do customers currently reach you to buy or book?</h3>
-                  <p className="text-xs text-zinc-400">Select all communication networks currently handled by your staff (choose as many as apply).</p>
+                  <span className="text-[10px] font-mono text-blue-700 uppercase tracking-widest font-bold">Question 2</span>
+                  <h3 className="text-lg md:text-xl font-bold text-slate-950">How do customers currently reach you to buy or book?</h3>
+                  <p className="text-xs text-slate-500">Select all communication networks currently handled by your staff (choose as many as apply).</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -618,13 +618,13 @@ export default function SmeFunnel({
                         onClick={() => handleToggleChannel(ch)}
                         className={`p-4 border rounded-xl text-left transition-all cursor-pointer flex items-center justify-between font-mono text-xs ${
                           isSelected 
-                            ? 'bg-blue-500/10 border-blue-500 text-white font-bold' 
-                            : 'bg-[#18181B] border-[#27272A] text-zinc-400 hover:text-white hover:border-zinc-700'
+                            ? 'bg-blue-50 border-blue-700 text-blue-700 font-bold' 
+                            : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-950 hover:border-slate-300'
                         }`}
                       >
                         <span>{ch}</span>
                         <div className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${
-                          isSelected ? 'bg-blue-500 border-blue-500 text-white' : 'border-zinc-600'
+                          isSelected ? 'bg-blue-700 border-blue-700 text-white' : 'border-slate-300'
                         }`}>
                           {isSelected && <span className="text-[10px] font-bold">✓</span>}
                         </div>
@@ -633,10 +633,10 @@ export default function SmeFunnel({
                   })}
                 </div>
 
-                <div className="flex items-center justify-between border-t border-[#27272A]/40 pt-6">
+                <div className="flex items-center justify-between border-t border-slate-200/60 pt-6">
                   <button 
                     onClick={() => setCurrentStep(1)}
-                    className="px-4 py-2 bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-zinc-700 transition-all"
+                    className="px-4 py-2 bg-transparent hover:bg-slate-100 text-slate-500 hover:text-slate-900 rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-slate-200 transition-all"
                   >
                     ← Back
                   </button>
@@ -645,8 +645,8 @@ export default function SmeFunnel({
                     onClick={() => setCurrentStep(3)}
                     className={`px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
                       channels.length > 0
-                        ? 'bg-[#3B82F6] text-white hover:bg-blue-600'
-                        : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
+                        ? 'bg-blue-700 text-white hover:bg-blue-800'
+                        : 'bg-slate-100 text-slate-400 cursor-not-allowed'
                     }`}
                   >
                     <span>Continue</span> <ArrowRight className="w-3.5 h-3.5" />
@@ -655,13 +655,13 @@ export default function SmeFunnel({
               </div>
             )}
 
-            {/* STEP 3: Stock Coordination (New!) */}
+            {/* STEP 3: Stock Coordination */}
             {currentStep === 3 && (
-              <div className="bg-[#131316] border border-[#27272A] rounded-2xl p-6 md:p-8 space-y-6 animate-scale-up">
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 space-y-6 shadow-lg animate-scale-up">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest font-bold">Question 3</span>
-                  <h3 className="text-lg md:text-xl font-bold text-white">How do you synchronize stock levels between physical storefronts and online chats?</h3>
-                  <p className="text-xs text-zinc-400">Inventory mismatches cause lost sales, double-selling friction, and slow fulfillment.</p>
+                  <span className="text-[10px] font-mono text-blue-700 uppercase tracking-widest font-bold">Question 3</span>
+                  <h3 className="text-lg md:text-xl font-bold text-slate-950">How do you synchronize stock levels between physical storefronts and online chats?</h3>
+                  <p className="text-xs text-slate-500">Inventory mismatches cause lost sales, double-selling friction, and slow fulfillment.</p>
                 </div>
 
                 <div className="space-y-2.5">
@@ -679,27 +679,27 @@ export default function SmeFunnel({
                       }}
                       className={`p-4 border rounded-xl text-left w-full transition-all cursor-pointer flex items-center justify-between ${
                         stockTracking === opt.val
-                          ? 'bg-[#3B82F6]/10 border-blue-500 text-white font-bold'
-                          : 'bg-[#18181B] border-[#27272A] text-zinc-300 hover:text-white hover:border-zinc-700'
+                          ? 'bg-blue-50 border-blue-700 text-blue-700 font-bold'
+                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:text-slate-950 hover:border-slate-300'
                       }`}
                     >
                       <div>
                         <span className="text-xs font-bold block">{opt.val}</span>
-                        <span className="text-[10px] text-zinc-400 font-light mt-0.5 block">{opt.desc}</span>
+                        <span className="text-[10px] text-slate-400 font-light mt-0.5 block">{opt.desc}</span>
                       </div>
                       <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ml-3 ${
-                        stockTracking === opt.val ? 'border-blue-500' : 'border-zinc-600'
+                        stockTracking === opt.val ? 'border-blue-700' : 'border-slate-300'
                       }`}>
-                        {stockTracking === opt.val && <div className="w-2.5 h-2.5 bg-blue-500 rounded-full" />}
+                        {stockTracking === opt.val && <div className="w-2.5 h-2.5 bg-blue-700 rounded-full" />}
                       </div>
                     </button>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between border-t border-[#27272A]/40 pt-6">
+                <div className="flex items-center justify-between border-t border-slate-200/60 pt-6">
                   <button 
                     onClick={() => setCurrentStep(2)}
-                    className="px-4 py-2 bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-zinc-700 transition-all"
+                    className="px-4 py-2 bg-transparent hover:bg-slate-100 text-slate-500 hover:text-slate-900 rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-slate-200 transition-all"
                   >
                     ← Back
                   </button>
@@ -707,13 +707,13 @@ export default function SmeFunnel({
               </div>
             )}
 
-            {/* STEP 4: Payment Verification & Reconciliation (New!) */}
+            {/* STEP 4: Payment Verification & Reconciliation */}
             {currentStep === 4 && (
-              <div className="bg-[#131316] border border-[#27272A] rounded-2xl p-6 md:p-8 space-y-6 animate-scale-up">
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 space-y-6 shadow-lg animate-scale-up">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest font-bold">Question 4</span>
-                  <h3 className="text-lg md:text-xl font-bold text-white">How do your sales representatives confirm bank transfer payments?</h3>
-                  <p className="text-xs text-zinc-400">Verifying payments manually keeps customers waiting and exposes you to fake transfer scams.</p>
+                  <span className="text-[10px] font-mono text-blue-700 uppercase tracking-widest font-bold">Question 4</span>
+                  <h3 className="text-lg md:text-xl font-bold text-slate-950">How do your sales representatives confirm bank transfer payments?</h3>
+                  <p className="text-xs text-slate-500">Verifying payments manually keeps customers waiting and exposes you to fake transfer scams.</p>
                 </div>
 
                 <div className="space-y-2.5">
@@ -731,27 +731,27 @@ export default function SmeFunnel({
                       }}
                       className={`p-4 border rounded-xl text-left w-full transition-all cursor-pointer flex items-center justify-between ${
                         paymentVerification === opt.val
-                          ? 'bg-[#3B82F6]/10 border-blue-500 text-white font-bold'
-                          : 'bg-[#18181B] border-[#27272A] text-zinc-300 hover:text-white hover:border-zinc-700'
+                          ? 'bg-blue-50 border-blue-700 text-blue-700 font-bold'
+                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:text-slate-950 hover:border-slate-300'
                       }`}
                     >
                       <div>
                         <span className="text-xs font-bold block">{opt.val}</span>
-                        <span className="text-[10px] text-zinc-400 font-light mt-0.5 block">{opt.desc}</span>
+                        <span className="text-[10px] text-slate-400 font-light mt-0.5 block">{opt.desc}</span>
                       </div>
                       <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ml-3 ${
-                        paymentVerification === opt.val ? 'border-blue-500' : 'border-zinc-600'
+                        paymentVerification === opt.val ? 'border-blue-700' : 'border-slate-300'
                       }`}>
-                        {paymentVerification === opt.val && <div className="w-2.5 h-2.5 bg-blue-500 rounded-full" />}
+                        {paymentVerification === opt.val && <div className="w-2.5 h-2.5 bg-blue-700 rounded-full" />}
                       </div>
                     </button>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between border-t border-[#27272A]/40 pt-6">
+                <div className="flex items-center justify-between border-t border-slate-200/60 pt-6">
                   <button 
                     onClick={() => setCurrentStep(3)}
-                    className="px-4 py-2 bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-zinc-700 transition-all"
+                    className="px-4 py-2 bg-transparent hover:bg-slate-100 text-slate-500 hover:text-slate-900 rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-slate-200 transition-all"
                   >
                     ← Back
                   </button>
@@ -761,11 +761,11 @@ export default function SmeFunnel({
 
             {/* STEP 5: Chat/Reply Delays */}
             {currentStep === 5 && (
-              <div className="bg-[#131316] border border-[#27272A] rounded-2xl p-6 md:p-8 space-y-6 animate-scale-up">
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 space-y-6 shadow-lg animate-scale-up">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest font-bold">Question 5</span>
-                  <h3 className="text-lg md:text-xl font-bold text-white">How often do you lose customers because replies are too slow or missed entirely?</h3>
-                  <p className="text-xs text-zinc-400">Response time directly determines checkout ratios in high-competition digital markets.</p>
+                  <span className="text-[10px] font-mono text-blue-700 uppercase tracking-widest font-bold">Question 5</span>
+                  <h3 className="text-lg md:text-xl font-bold text-slate-950">How often do you lose customers because replies are too slow or missed entirely?</h3>
+                  <p className="text-xs text-slate-500">Response time directly determines checkout ratios in high-competition digital markets.</p>
                 </div>
 
                 <div className="space-y-2.5">
@@ -783,27 +783,27 @@ export default function SmeFunnel({
                       }}
                       className={`p-4 border rounded-xl text-left w-full transition-all cursor-pointer flex items-center justify-between ${
                         replyDelay === opt.val
-                          ? 'bg-[#3B82F6]/10 border-blue-500 text-white'
-                          : 'bg-[#18181B] border-[#27272A] text-zinc-300 hover:text-white hover:border-zinc-700'
+                          ? 'bg-blue-55 border-blue-700 text-blue-700 font-bold'
+                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:text-slate-950 hover:border-slate-300'
                       }`}
                     >
                       <div>
                         <span className="text-xs font-bold block">{opt.val}</span>
-                        <span className="text-[10px] text-zinc-400 font-light mt-0.5 block">{opt.desc}</span>
+                        <span className="text-[10px] text-slate-400 font-light mt-0.5 block">{opt.desc}</span>
                       </div>
                       <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ml-3 ${
-                        replyDelay === opt.val ? 'border-blue-500' : 'border-zinc-600'
+                        replyDelay === opt.val ? 'border-blue-700' : 'border-slate-300'
                       }`}>
-                        {replyDelay === opt.val && <div className="w-2.5 h-2.5 bg-blue-500 rounded-full" />}
+                        {replyDelay === opt.val && <div className="w-2.5 h-2.5 bg-blue-700 rounded-full" />}
                       </div>
                     </button>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between border-t border-[#27272A]/40 pt-6">
+                <div className="flex items-center justify-between border-t border-slate-200/60 pt-6">
                   <button 
                     onClick={() => setCurrentStep(4)}
-                    className="px-4 py-2 bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-zinc-700 transition-all"
+                    className="px-4 py-2 bg-transparent hover:bg-slate-100 text-slate-500 hover:text-slate-900 rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-slate-200 transition-all"
                   >
                     ← Back
                   </button>
@@ -811,13 +811,13 @@ export default function SmeFunnel({
               </div>
             )}
 
-            {/* STEP 6: Core Bottleneck/Pain (Tailored dynamically by industry!) */}
+            {/* STEP 6: Core Bottleneck/Pain */}
             {currentStep === 6 && (
-              <div className="bg-[#131316] border border-[#27272A] rounded-2xl p-6 md:p-8 space-y-6 animate-scale-up">
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 space-y-6 shadow-lg animate-scale-up">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest font-bold">Question 6 — tailored for {industry}</span>
-                  <h3 className="text-lg md:text-xl font-bold text-white">What is the ONE task that eats up the most operational hours?</h3>
-                  <p className="text-xs text-zinc-400">Pinpoint your largest labor leakage to see how specialized AI Agents recover these lost margins.</p>
+                  <span className="text-[10px] font-mono text-blue-700 uppercase tracking-widest font-bold">Question 6 — tailored for {industry}</span>
+                  <h3 className="text-lg md:text-xl font-bold text-slate-950">What is the ONE task that eats up the most operational hours?</h3>
+                  <p className="text-xs text-slate-500">Pinpoint your largest labor leakage to see how specialized AI Agents recover these lost margins.</p>
                 </div>
 
                 <div className="space-y-2.5">
@@ -830,24 +830,24 @@ export default function SmeFunnel({
                       }}
                       className={`p-4 border rounded-xl text-left w-full transition-all cursor-pointer flex items-center justify-between ${
                         corePain === pain
-                          ? 'bg-[#3B82F6]/10 border-blue-500 text-white font-bold'
-                          : 'bg-[#18181B] border-[#27272A] text-zinc-300 hover:text-white hover:border-zinc-700'
+                          ? 'bg-blue-55 border-blue-700 text-blue-700 font-bold'
+                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:text-slate-950 hover:border-slate-300'
                       }`}
                     >
                       <span className="text-xs font-medium">{pain}</span>
                       <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ml-3 ${
-                        corePain === pain ? 'border-blue-500' : 'border-zinc-600'
+                        corePain === pain ? 'border-blue-700' : 'border-slate-300'
                       }`}>
-                        {corePain === pain && <div className="w-2.5 h-2.5 bg-blue-500 rounded-full" />}
+                        {corePain === pain && <div className="w-2.5 h-2.5 bg-blue-700 rounded-full" />}
                       </div>
                     </button>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between border-t border-[#27272A]/40 pt-6">
+                <div className="flex items-center justify-between border-t border-slate-200/60 pt-6">
                   <button 
                     onClick={() => setCurrentStep(5)}
-                    className="px-4 py-2 bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-zinc-700 transition-all"
+                    className="px-4 py-2 bg-transparent hover:bg-slate-100 text-slate-500 hover:text-slate-900 rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-slate-200 transition-all"
                   >
                     ← Back
                   </button>
@@ -855,13 +855,13 @@ export default function SmeFunnel({
               </div>
             )}
 
-            {/* STEP 7: Customer Retention Strategy (New!) */}
+            {/* STEP 7: Customer Retention Strategy */}
             {currentStep === 7 && (
-              <div className="bg-[#131316] border border-[#27272A] rounded-2xl p-6 md:p-8 space-y-6 animate-scale-up">
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 space-y-6 shadow-lg animate-scale-up">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest font-bold">Question 7</span>
-                  <h3 className="text-lg md:text-xl font-bold text-white">What is your current strategy for customer retention and repeat purchases?</h3>
-                  <p className="text-xs text-zinc-400">Winning a new customer costs 5x more than retaining an existing buyer. Repeat purchases determine long-term margin health.</p>
+                  <span className="text-[10px] font-mono text-blue-700 uppercase tracking-widest font-bold">Question 7</span>
+                  <h3 className="text-lg md:text-xl font-bold text-slate-950">What is your current strategy for customer retention and repeat purchases?</h3>
+                  <p className="text-xs text-slate-500">Winning a new customer costs 5x more than retaining an existing buyer. Repeat purchases determine long-term margin health.</p>
                 </div>
 
                 <div className="space-y-2.5">
@@ -879,27 +879,27 @@ export default function SmeFunnel({
                       }}
                       className={`p-4 border rounded-xl text-left w-full transition-all cursor-pointer flex items-center justify-between ${
                         customerRetention === opt.val
-                          ? 'bg-[#3B82F6]/10 border-blue-500 text-white font-bold'
-                          : 'bg-[#18181B] border-[#27272A] text-zinc-300 hover:text-white hover:border-zinc-700'
+                          ? 'bg-blue-50 border-blue-700 text-blue-700 font-bold'
+                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:text-slate-950 hover:border-slate-300'
                       }`}
                     >
                       <div>
                         <span className="text-xs font-bold block">{opt.val}</span>
-                        <span className="text-[10px] text-zinc-400 font-light mt-0.5 block">{opt.desc}</span>
+                        <span className="text-[10px] text-slate-400 font-light mt-0.5 block">{opt.desc}</span>
                       </div>
                       <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ml-3 ${
-                        customerRetention === opt.val ? 'border-blue-500' : 'border-zinc-600'
+                        customerRetention === opt.val ? 'border-blue-700' : 'border-slate-300'
                       }`}>
-                        {customerRetention === opt.val && <div className="w-2.5 h-2.5 bg-blue-500 rounded-full" />}
+                        {customerRetention === opt.val && <div className="w-2.5 h-2.5 bg-blue-700 rounded-full" />}
                       </div>
                     </button>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between border-t border-[#27272A]/40 pt-6">
+                <div className="flex items-center justify-between border-t border-slate-200/60 pt-6">
                   <button 
                     onClick={() => setCurrentStep(6)}
-                    className="px-4 py-2 bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-zinc-700 transition-all"
+                    className="px-4 py-2 bg-transparent hover:bg-slate-100 text-slate-500 hover:text-slate-900 rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-slate-200 transition-all"
                   >
                     ← Back
                   </button>
@@ -909,11 +909,11 @@ export default function SmeFunnel({
 
             {/* STEP 8: Time Valuation */}
             {currentStep === 8 && (
-              <div className="bg-[#131316] border border-[#27272A] rounded-2xl p-6 md:p-8 space-y-6 animate-scale-up">
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 space-y-6 shadow-lg animate-scale-up">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest font-bold">Question 8</span>
-                  <h3 className="text-lg md:text-xl font-bold text-white">If you got 5 extra hours back every single week, what is that worth to your business?</h3>
-                  <p className="text-xs text-zinc-400">Estimate the high-leverage business value of your recovered leadership time.</p>
+                  <span className="text-[10px] font-mono text-blue-700 uppercase tracking-widest font-bold">Question 8</span>
+                  <h3 className="text-lg md:text-xl font-bold text-slate-950">If you got 5 extra hours back every single week, what is that worth to your business?</h3>
+                  <p className="text-xs text-slate-500">Estimate the high-leverage business value of your recovered leadership time.</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -921,7 +921,7 @@ export default function SmeFunnel({
                     { label: 'Not much', val: 'Not much (Under ₦50,000/week in direct labor/deals)' },
                     { label: 'A little', val: 'A little (₦50,000 - ₦200,000/week)' },
                     { label: 'A lot', val: 'A lot (₦200,000 - ₦500,000/week)' },
-                    { label: 'Everything', val: 'Everything (Over ₦500,000/week — I\'m stretched extremely thin)' }
+                    { label: 'Everything', val: 'Everything (Over ₦50,000/week — I\'m stretched extremely thin)' }
                   ].map(val => (
                     <button
                       key={val.label}
@@ -931,20 +931,20 @@ export default function SmeFunnel({
                       }}
                       className={`p-5 border rounded-xl text-left transition-all cursor-pointer flex flex-col justify-between h-28 ${
                         timeValuation === val.val
-                          ? 'bg-[#3B82F6]/10 border-blue-500 text-white'
-                          : 'bg-[#18181B] border-[#27272A] text-zinc-300 hover:text-white hover:border-zinc-700'
+                          ? 'bg-blue-50 border-blue-700 text-blue-700 font-bold'
+                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:text-slate-950 hover:border-slate-300'
                       }`}
                     >
-                      <span className="text-xs font-mono font-bold uppercase text-zinc-500 tracking-wider block">{val.label}</span>
+                      <span className="text-xs font-mono font-bold uppercase text-slate-400 tracking-wider block">{val.label}</span>
                       <span className="text-xs font-bold leading-normal mt-2">{val.val}</span>
                     </button>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between border-t border-[#27272A]/40 pt-6">
+                <div className="flex items-center justify-between border-t border-slate-200/60 pt-6">
                   <button 
                     onClick={() => setCurrentStep(7)}
-                    className="px-4 py-2 bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-zinc-700 transition-all"
+                    className="px-4 py-2 bg-transparent hover:bg-slate-100 text-slate-500 hover:text-slate-900 rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-slate-200 transition-all"
                   >
                     ← Back
                   </button>
@@ -954,85 +954,85 @@ export default function SmeFunnel({
 
             {/* STEP 9: Business Details Submission */}
             {currentStep === 9 && (
-              <div className="bg-[#131316] border border-[#27272A] rounded-2xl p-6 md:p-8 space-y-6 animate-scale-up">
+              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 space-y-6 shadow-lg animate-scale-up">
                 <div className="space-y-1.5 text-center max-w-xl mx-auto">
-                  <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-bold block">Final Step</span>
-                  <h3 className="text-xl font-extrabold text-white">Unlock Your Custom Operational Analysis</h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
+                  <span className="text-[10px] font-mono text-blue-700 uppercase tracking-widest font-bold block">Final Step</span>
+                  <h3 className="text-xl font-extrabold text-slate-950">Unlock Your Custom Operational Analysis</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">
                     Enter your contact details to calculate your final annual leakage, review automation recommendations, and build your personalized operational growth playbook.
                   </p>
                 </div>
 
                 <form onSubmit={handleQuizSubmit} className="space-y-4 max-w-md mx-auto">
                   <div className="space-y-1">
-                    <label className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block">Full Name</label>
+                    <label className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Full Name</label>
                     <input 
                       type="text"
                       required
                       placeholder="e.g. Ayomide Sholarin"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-[#18181B] border border-[#27272A] focus:outline-none focus:border-blue-500 rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600"
+                      className="w-full bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block">Business / SME Brand Name</label>
+                    <label className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Business / SME Brand Name</label>
                     <input 
                       type="text"
                       required
                       placeholder="e.g. Lekki Retail Outlet"
                       value={businessName}
                       onChange={(e) => setBusinessName(e.target.value)}
-                      className="w-full bg-[#18181B] border border-[#27272A] focus:outline-none focus:border-blue-500 rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600"
+                      className="w-full bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1">
-                      <label className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block">WhatsApp Number</label>
+                      <label className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">WhatsApp Number</label>
                       <input 
                         type="tel"
                         required
                         placeholder="e.g. +234 80 1234 5678"
                         value={whatsapp}
                         onChange={(e) => setWhatsapp(e.target.value)}
-                        className="w-full bg-[#18181B] border border-[#27272A] focus:outline-none focus:border-blue-500 rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600"
+                        className="w-full bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400"
                       />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block">Email Address</label>
+                      <label className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">Email Address</label>
                       <input 
                         type="email"
                         required
                         placeholder="e.g. owner@lekkishop.ng"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full bg-[#18181B] border border-[#27272A] focus:outline-none focus:border-blue-500 rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-600"
+                        className="w-full bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400"
                       />
                     </div>
                   </div>
 
                   {/* Secure Data Protection Banner */}
-                  <div className="p-3 bg-blue-500/5 border border-blue-500/10 rounded-xl flex items-center gap-3">
-                    <ShieldCheck className="w-5 h-5 text-blue-400 shrink-0" />
+                  <div className="p-3 bg-blue-50 border border-blue-100 rounded-xl flex items-center gap-3">
+                    <ShieldCheck className="w-5 h-5 text-blue-700 shrink-0" />
                     <div>
-                      <span className="text-xs font-bold text-white block">🔒 Secure Operational Diagnostic</span>
-                      <span className="text-[10px] text-zinc-400 block leading-tight">Your business statistics are confidential and processed securely for diagnostic mapping only.</span>
+                      <span className="text-xs font-bold text-blue-900 block">🔒 Secure Operational Diagnostic</span>
+                      <span className="text-[10px] text-slate-500 block leading-tight">Your business statistics are confidential and processed securely for diagnostic mapping only.</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-[#27272A]/40 pt-4 mt-6">
+                  <div className="flex items-center justify-between border-t border-slate-200/60 pt-4 mt-6">
                     <button 
                       type="button"
                       onClick={() => setCurrentStep(8)}
-                      className="px-4 py-2 bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-zinc-700 transition-all"
+                      className="px-4 py-2 bg-transparent hover:bg-slate-100 text-slate-500 hover:text-slate-900 rounded-xl text-xs font-semibold cursor-pointer border border-transparent hover:border-slate-200 transition-all"
                     >
                       ← Back
                     </button>
                     <button 
                       type="submit"
-                      className="bg-blue-600 text-white hover:bg-blue-500 px-6 py-3 rounded-xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer shadow-[0_4px_12px_rgba(59,130,246,0.2)]"
+                      className="bg-blue-700 text-white hover:bg-blue-800 px-6 py-3 rounded-xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer shadow-md"
                     >
                       <span>Generate Diagnostic results</span> <ArrowRight className="w-4 h-4" />
                     </button>
@@ -1046,29 +1046,29 @@ export default function SmeFunnel({
               <div className="space-y-8 animate-scale-up">
                 
                 {/* Result Hero Banner */}
-                <div className="bg-[#131316] border border-[#27272A] rounded-2xl p-6 md:p-8 space-y-6 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-red-900/5 rounded-full blur-[80px] pointer-events-none" />
+                <div className="bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 space-y-6 relative overflow-hidden shadow-lg">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full blur-[80px] pointer-events-none" />
                   
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-[#27272A]/40 pb-6">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-200 pb-6">
                     <div className="space-y-2">
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-500/10 border border-red-500/25 text-red-400 text-[10px] font-mono uppercase tracking-widest font-bold">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-50 border border-red-100 text-red-700 text-[10px] font-mono uppercase tracking-widest font-bold rounded-full">
                         <AlertCircle className="w-3.5 h-3.5" />
                         <span>Critical Leakage Diagnostic</span>
                       </div>
-                      <h3 className="text-xl md:text-2xl font-extrabold text-white tracking-tight">
+                      <h3 className="text-xl md:text-2xl font-extrabold text-slate-950 tracking-tight">
                         {completedLead.businessName} Inefficiency Audit
                       </h3>
-                      <p className="text-xs text-zinc-400 font-light">
-                        Prepared for <span className="font-bold text-zinc-300">{completedLead.name}</span> • Sector Node: <span className="text-blue-400 font-bold font-mono">{completedLead.industry}</span>
+                      <p className="text-xs text-slate-500 font-light">
+                        Prepared for <span className="font-bold text-slate-800">{completedLead.name}</span> • Sector Node: <span className="text-blue-700 font-bold font-mono">{completedLead.industry}</span>
                       </p>
                     </div>
 
-                    <div className="bg-[#1A1A1E] border border-[#27272A] rounded-2xl p-4 text-center md:text-right shrink-0">
-                      <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider block">Estimated Annual Revenue Leakage</span>
-                      <span className="text-2xl md:text-3xl font-black text-rose-500 tracking-tight block">
+                    <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center md:text-right shrink-0">
+                      <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Estimated Annual Revenue Leakage</span>
+                      <span className="text-2xl md:text-3xl font-black text-rose-600 tracking-tight block">
                         ₦{completedLead.revenueLeakage.toLocaleString()}
                       </span>
-                      <span className="text-[9px] font-mono text-rose-400/80 bg-rose-500/5 px-2 py-0.5 rounded-full mt-1 inline-block">
+                      <span className="text-[9px] font-mono text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-full mt-1 inline-block border border-rose-100">
                         ~₦{(Math.round(completedLead.revenueLeakage / 12)).toLocaleString()} Lost Monthly
                       </span>
                     </div>
@@ -1078,14 +1078,14 @@ export default function SmeFunnel({
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     
                     {/* BottleNeck Analysis */}
-                    <div className="space-y-3 bg-[#1C1C20]/40 border border-[#27272A]/40 rounded-xl p-5 text-xs">
-                      <h4 className="font-bold text-white uppercase font-mono tracking-wider text-zinc-400 flex items-center gap-2">
+                    <div className="space-y-3 bg-slate-50 border border-slate-200/60 rounded-xl p-5 text-xs">
+                      <h4 className="font-bold text-slate-900 uppercase font-mono tracking-wider flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-rose-500" /> Core Bottleneck Diagnosis
                       </h4>
-                      <p className="text-zinc-300 leading-relaxed font-light">
-                        By relying on <span className="font-bold text-white">{completedLead.channels.join(', ')}</span> and losing critical hours on <span className="font-bold text-white italic">"{completedLead.corePain}"</span>, your operations suffer severe labor inefficiencies.
+                      <p className="text-slate-700 leading-relaxed font-light">
+                        By relying on <span className="font-bold text-slate-950">{completedLead.channels.join(', ')}</span> and losing critical hours on <span className="font-bold text-slate-950 italic">"{completedLead.corePain}"</span>, your operations suffer severe labor inefficiencies.
                       </p>
-                      <div className="p-3 bg-[#161619] border border-red-500/10 text-rose-400 rounded-lg">
+                      <div className="p-3 bg-rose-50/50 border border-rose-100 text-rose-700 rounded-lg">
                         <p className="font-bold">Loss Mechanism:</p>
                         <p className="font-light mt-1">
                           {completedLead.replyDelay.includes('Often') || completedLead.replyDelay.includes('All the time') 
@@ -1097,52 +1097,52 @@ export default function SmeFunnel({
                     </div>
 
                     {/* Differentiator & Recommendations */}
-                    <div className="space-y-3 bg-[#1C1C20]/40 border border-[#27272A]/40 rounded-xl p-5 text-xs">
-                      <h4 className="font-bold text-white uppercase font-mono tracking-wider text-cyan-400 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-cyan-400" /> tailored Flow OS Solutions
+                    <div className="space-y-3 bg-slate-50 border border-slate-200/60 rounded-xl p-5 text-xs">
+                      <h4 className="font-bold text-blue-700 uppercase font-mono tracking-wider flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-blue-600" /> tailored Flow OS Solutions
                       </h4>
-                      <p className="text-zinc-300 leading-relaxed font-light">
-                        Deploying specialized Flow OS agents can recover up to <span className="font-bold text-green-400">85% of this leakage</span> by automating repetitive tasks:
+                      <p className="text-slate-700 leading-relaxed font-light">
+                        Deploying specialized Flow OS agents can recover up to <span className="font-bold text-green-700">85% of this leakage</span> by automating repetitive tasks:
                       </p>
                       <div className="space-y-2 max-h-[220px] overflow-y-auto pr-1">
-                        <div className="flex items-start gap-2.5 p-2 bg-[#161619]/60 border border-[#27272A]/30 rounded-lg">
-                          <CheckCircle className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                        <div className="flex items-start gap-2.5 p-2 bg-white border border-slate-200/40 rounded-lg">
+                          <CheckCircle className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
                           <div>
-                            <span className="font-bold text-white block">Deploy Auto-Reply Specialist Agent</span>
-                            <span className="text-[10px] text-zinc-400 font-light">Automate pricing, specifications, and availability across WhatsApp & IG Shop instantly.</span>
+                            <span className="font-bold text-slate-950 block">Deploy Auto-Reply Specialist Agent</span>
+                            <span className="text-[10px] text-slate-500 font-light">Automate pricing, specifications, and availability across WhatsApp & IG Shop instantly.</span>
                           </div>
                         </div>
-                        <div className="flex items-start gap-2.5 p-2 bg-[#161619]/60 border border-[#27272A]/30 rounded-lg">
-                          <CheckCircle className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                        <div className="flex items-start gap-2.5 p-2 bg-white border border-slate-200/40 rounded-lg">
+                          <CheckCircle className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
                           <div>
-                            <span className="font-bold text-white block">Connect Central Spreadsheet Integration</span>
-                            <span className="text-[10px] text-zinc-400 font-light">Automatically synchronize and log all orders, customer requests, and ledger updates.</span>
+                            <span className="font-bold text-slate-950 block">Connect Central Spreadsheet Integration</span>
+                            <span className="text-[10px] text-slate-500 font-light">Automatically synchronize and log all orders, customer requests, and ledger updates.</span>
                           </div>
                         </div>
                         {completedLead.stockTracking && !completedLead.stockTracking.includes('Fully automated') && (
-                          <div className="flex items-start gap-2.5 p-2 bg-blue-500/5 border border-blue-500/10 rounded-lg">
-                            <CheckCircle className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                          <div className="flex items-start gap-2.5 p-2 bg-blue-50 border border-blue-100 rounded-lg">
+                            <CheckCircle className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
                             <div>
-                              <span className="font-bold text-white block">Deploy Cross-Channel Inventory Sync</span>
-                              <span className="text-[10px] text-zinc-400 font-light">Eliminate double-selling by automatically subtracting stock across storefronts and chat channels.</span>
+                              <span className="font-bold text-blue-900 block">Deploy Cross-Channel Inventory Sync</span>
+                              <span className="text-[10px] text-blue-700 font-light">Eliminate double-selling by automatically subtracting stock across storefronts and chat channels.</span>
                             </div>
                           </div>
                         )}
                         {completedLead.paymentVerification && !completedLead.paymentVerification.includes('Automated') && (
-                          <div className="flex items-start gap-2.5 p-2 bg-indigo-500/5 border border-indigo-500/10 rounded-lg">
-                            <CheckCircle className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
+                          <div className="flex items-start gap-2.5 p-2 bg-indigo-55 border border-indigo-100 rounded-lg">
+                            <CheckCircle className="w-4 h-4 text-indigo-700 shrink-0 mt-0.5" />
                             <div>
-                              <span className="font-bold text-white block">Deploy Webhook Payment Verification Specialist</span>
-                              <span className="text-[10px] text-zinc-400 font-light">Instantly confirm bank transfers without manual owner intervention, guarding against fake receipts.</span>
+                              <span className="font-bold text-indigo-900 block">Deploy Webhook Payment Verification Specialist</span>
+                              <span className="text-[10px] text-indigo-700 font-light">Instantly confirm bank transfers without manual owner intervention, guarding against fake receipts.</span>
                             </div>
                           </div>
                         )}
                         {completedLead.customerRetention && !completedLead.customerRetention.includes('Automated') && (
-                          <div className="flex items-start gap-2.5 p-2 bg-emerald-500/5 border border-emerald-500/10 rounded-lg">
-                            <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                          <div className="flex items-start gap-2.5 p-2 bg-emerald-50 border border-emerald-100 rounded-lg">
+                            <CheckCircle className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
                             <div>
-                              <span className="font-bold text-white block">Configure Post-Purchase WhatsApp Retention Loop</span>
-                              <span className="text-[10px] text-zinc-400 font-light">Schedule automated follow-ups and feedback triggers to secure lucrative secondary sales.</span>
+                              <span className="font-bold text-emerald-900 block">Configure Post-Purchase WhatsApp Retention Loop</span>
+                              <span className="text-[10px] text-emerald-700 font-light">Schedule automated follow-ups and feedback triggers to secure lucrative secondary sales.</span>
                             </div>
                           </div>
                         )}
@@ -1152,11 +1152,11 @@ export default function SmeFunnel({
                   </div>
 
                   {/* Operational Audit generated successfully confirmation */}
-                  <div className="p-3.5 bg-green-500/10 border border-green-500/20 text-green-400 text-xs rounded-xl flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  <div className="p-3.5 bg-green-50 border border-green-200 text-green-800 text-xs rounded-xl flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-green-600 animate-pulse" />
                     <div className="flex-1">
-                      <p className="font-bold">Custom Operational Audit Compiled Successfully!</p>
-                      <p className="font-light text-[10px] text-zinc-400 mt-0.5">
+                      <p className="font-bold text-green-900">Custom Operational Audit Compiled Successfully!</p>
+                      <p className="font-light text-[10px] text-slate-500 mt-0.5">
                         Your efficiency metrics and optimization playbooks have been prepared. Use the scheduling assistant below to book your consultation slot.
                       </p>
                     </div>
@@ -1165,7 +1165,7 @@ export default function SmeFunnel({
                   <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 justify-between">
                     <button 
                       onClick={handleResetQuiz}
-                      className="w-full sm:w-auto px-4 py-2 border border-[#27272A] hover:bg-zinc-800 text-zinc-300 hover:text-white rounded-xl text-xs font-semibold cursor-pointer transition-all"
+                      className="w-full sm:w-auto px-4 py-2 border border-slate-200 hover:bg-slate-100 text-slate-700 hover:text-slate-900 rounded-xl text-xs font-semibold cursor-pointer transition-all"
                     >
                       ← Reset Diagnostic Quiz
                     </button>
@@ -1175,7 +1175,7 @@ export default function SmeFunnel({
                         // Open storefront but preset the category or trigger customized demo
                         onBackToLanding();
                       }}
-                      className="w-full sm:w-auto px-5 py-2.5 bg-zinc-800 hover:bg-zinc-700 border border-[#27272A] text-white rounded-xl text-xs font-bold transition-all cursor-pointer text-center"
+                      className="w-full sm:w-auto px-5 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-300 text-white rounded-xl text-xs font-bold transition-all cursor-pointer text-center"
                     >
                       Explore Interactive Demo OS Node
                     </button>
@@ -1183,14 +1183,14 @@ export default function SmeFunnel({
                 </div>
 
                 {/* MEETING BOOKER SECTION (Section 2/4 of SME Playbook) */}
-                <div className="bg-[#131316] border border-[#27272A] rounded-2xl p-6 md:p-8 space-y-6 relative">
+                <div className="bg-white border border-slate-200/80 rounded-2xl p-6 md:p-8 space-y-6 relative shadow-lg">
                   <div className="space-y-1.5 text-center max-w-xl mx-auto">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#3B82F6]/10 border border-[#3B82F6]/25 text-[#3B82F6] text-[10px] font-mono uppercase tracking-widest font-bold rounded-full">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-100 text-blue-700 text-[10px] font-mono uppercase tracking-widest font-bold rounded-full">
                       <Calendar className="w-3.5 h-3.5" />
                       <span>SME Action Step</span>
                     </div>
-                    <h3 className="text-xl font-extrabold text-white">Book a 15-Min System Architecture Session</h3>
-                    <p className="text-xs text-zinc-400 leading-relaxed font-light">
+                    <h3 className="text-xl font-extrabold text-slate-950">Book a 15-Min System Architecture Session</h3>
+                    <p className="text-xs text-slate-500 leading-relaxed font-light">
                       Let's map out your exact customer channels, deploy the AI Agents sandbox for your brand, and configure your live Google Sheets integration. Zero obligation.
                     </p>
                   </div>
@@ -1202,23 +1202,23 @@ export default function SmeFunnel({
                       <div className="md:col-span-7 space-y-4">
                         <div className="space-y-1.5">
                           <div className="flex items-center justify-between">
-                            <label className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block">1. Select Growth Consultation Date</label>
+                            <label className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">1. Select Growth Consultation Date</label>
                             {googleToken ? (
                               <div className="flex items-center gap-1.5 text-[10px] font-mono">
                                 {isLoadingCalendar ? (
                                   <>
-                                    <RefreshCw className="w-3 h-3 text-cyan-400 animate-spin" />
-                                    <span className="text-zinc-500">Syncing...</span>
+                                    <RefreshCw className="w-3 h-3 text-blue-700 animate-spin" />
+                                    <span className="text-slate-400">Syncing...</span>
                                   </>
                                 ) : (
                                   <>
                                     <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                                    <span className="text-green-400 font-bold">Calendar Synced</span>
+                                    <span className="text-green-600 font-bold">Calendar Synced</span>
                                   </>
                                 )}
                               </div>
                             ) : (
-                              <span className="text-[9px] font-mono text-zinc-600 uppercase">Offline Mode</span>
+                              <span className="text-[9px] font-mono text-slate-400 uppercase">Offline Mode</span>
                             )}
                           </div>
                           <div className="grid grid-cols-4 gap-2">
@@ -1237,19 +1237,19 @@ export default function SmeFunnel({
                                 }}
                                 className={`p-3 border rounded-xl text-center transition-all cursor-pointer ${
                                   selectedDate === d.val 
-                                    ? 'bg-[#3B82F6]/15 border-blue-500 text-white font-bold' 
-                                    : 'bg-[#18181B] border-[#27272A] text-zinc-400 hover:text-white'
+                                    ? 'bg-blue-50 border-blue-700 text-blue-700 font-bold' 
+                                    : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900'
                                 }`}
                               >
                                 <span className="text-[11px] block">{d.label}</span>
-                                <span className="text-[8px] font-mono text-zinc-500 mt-1 block">{d.display}</span>
+                                <span className="text-[8px] font-mono text-slate-400 mt-1 block">{d.display}</span>
                               </button>
                             ))}
                           </div>
                         </div>
 
                         <div className="space-y-1.5">
-                          <label className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block">2. Select Hour Slot (West Africa Time)</label>
+                          <label className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">2. Select Hour Slot (West Africa Time)</label>
                           <div className="grid grid-cols-3 gap-2">
                             {[
                               '09:30 AM', '11:00 AM', '01:30 PM', '03:00 PM', '04:30 PM', '06:00 PM'
@@ -1263,15 +1263,15 @@ export default function SmeFunnel({
                                   onClick={() => setSelectedTime(t)}
                                   className={`p-2.5 border rounded-xl text-center transition-all cursor-pointer font-mono text-xs relative ${
                                     isBusy
-                                      ? 'bg-red-500/5 border-red-500/20 text-red-500/30 line-through cursor-not-allowed'
+                                      ? 'bg-red-50/50 border-red-100 text-red-400/50 line-through cursor-not-allowed'
                                       : selectedTime === t 
-                                        ? 'bg-[#3B82F6]/15 border-blue-500 text-white font-bold' 
-                                        : 'bg-[#18181B] border-[#27272A] text-zinc-400 hover:text-white'
+                                        ? 'bg-blue-50 border-blue-700 text-blue-700 font-bold' 
+                                        : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 hover:border-slate-300'
                                   }`}
                                 >
                                   {t}
                                   {isBusy && (
-                                    <span className="absolute -bottom-1 -right-1 bg-rose-950 text-red-400 text-[7px] font-mono px-1 py-0.5 rounded border border-red-500/20 uppercase font-bold tracking-tight">
+                                    <span className="absolute -bottom-1 -right-1 bg-rose-50 text-red-600 text-[7px] font-mono px-1 py-0.5 rounded border border-red-200 uppercase font-bold tracking-tight">
                                       Busy
                                     </span>
                                   )}
@@ -1285,13 +1285,13 @@ export default function SmeFunnel({
                       {/* Right: Comments & lock button */}
                       <div className="md:col-span-5 flex flex-col justify-between space-y-4">
                         <div className="space-y-1.5">
-                          <label className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider block">3. Custom Growth Notes (Optional)</label>
+                          <label className="text-[10px] font-mono text-slate-500 uppercase tracking-wider block">3. Custom Growth Notes (Optional)</label>
                           <textarea 
                             rows={3}
                             placeholder="Tell us about specific automation goals (e.g., 'We struggle with answering Instagram DMs for luxury watches')."
                             value={bookingNotes}
                             onChange={(e) => setBookingNotes(e.target.value)}
-                            className="w-full bg-[#18181B] border border-[#27272A] focus:outline-none focus:border-blue-500 rounded-xl p-3 text-xs text-white placeholder-zinc-600 resize-none"
+                            className="w-full bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-700 rounded-xl p-3 text-xs text-slate-900 placeholder-slate-400 resize-none"
                           />
                         </div>
 
@@ -1300,8 +1300,8 @@ export default function SmeFunnel({
                           disabled={!selectedDate || !selectedTime || isSyncing}
                           className={`w-full py-3.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                             selectedDate && selectedTime && !isSyncing
-                              ? 'bg-blue-600 hover:bg-blue-500 text-white shadow-[0_4px_12px_rgba(59,130,246,0.3)]' 
-                              : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'
+                              ? 'bg-blue-700 hover:bg-blue-800 text-white shadow-md' 
+                              : 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'
                           }`}
                         >
                           {isSyncing ? (
@@ -1321,59 +1321,59 @@ export default function SmeFunnel({
                     </div>
                   ) : (
                     /* Meeting Confirmed State */
-                    <div className="bg-[#1C1C20]/50 border border-green-500/20 rounded-2xl p-8 max-w-lg mx-auto text-center space-y-4 animate-scale-up">
-                      <div className="w-12 h-12 bg-green-500/15 text-green-400 rounded-full flex items-center justify-center mx-auto">
+                    <div className="bg-slate-50 border border-green-200 rounded-2xl p-8 max-w-lg mx-auto text-center space-y-4 animate-scale-up shadow-sm">
+                      <div className="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center mx-auto border border-green-200">
                         <CheckCircle className="w-6 h-6 animate-pulse" />
                       </div>
                       
                       <div className="space-y-1">
-                        <h4 className="font-extrabold text-white text-lg">Consultation Scheduled!</h4>
-                        <p className="text-xs text-zinc-400">
+                        <h4 className="font-extrabold text-slate-950 text-lg">Consultation Scheduled!</h4>
+                        <p className="text-xs text-slate-500">
                           Your system architecture session is fully logged. A confirmation node has been synced to your contact detail.
                         </p>
                       </div>
 
-                      <div className="p-4 bg-[#131316] border border-[#27272A] rounded-xl text-xs text-left divide-y divide-[#27272A]/40 space-y-2">
+                      <div className="p-4 bg-white border border-slate-200 rounded-xl text-xs text-left divide-y divide-slate-150 space-y-2">
                         <div className="flex justify-between pb-2">
-                          <span className="text-zinc-500">Business Name</span>
-                          <span className="font-bold text-white">{completedLead.businessName}</span>
+                          <span className="text-slate-500">Business Name</span>
+                          <span className="font-bold text-slate-950">{completedLead.businessName}</span>
                         </div>
                         <div className="flex justify-between py-2">
-                          <span className="text-zinc-500">Representative</span>
-                          <span className="font-bold text-white">{completedLead.name}</span>
+                          <span className="text-slate-500">Representative</span>
+                          <span className="font-bold text-slate-950">{completedLead.name}</span>
                         </div>
                         <div className="flex justify-between py-2">
-                          <span className="text-zinc-500">Date & Hour Slot</span>
-                          <span className="font-bold text-cyan-400 font-mono">{selectedDate} at {selectedTime}</span>
+                          <span className="text-slate-500">Date & Hour Slot</span>
+                          <span className="font-bold text-blue-700 font-mono">{selectedDate} at {selectedTime}</span>
                         </div>
                         {completedLead.booking?.meetLink && (
                           <div className="flex flex-col gap-1.5 py-2.5">
-                            <span className="text-zinc-500 font-semibold block">Google Meet Room Link</span>
+                            <span className="text-slate-500 font-semibold block">Google Meet Room Link</span>
                             <a 
                               href={completedLead.booking.meetLink}
                               target="_blank"
                               rel="noreferrer"
-                              className="p-3 bg-blue-500/5 hover:bg-blue-500/10 border border-blue-500/20 rounded-xl font-bold text-blue-400 transition-all font-mono break-all flex items-center justify-center gap-2 text-xs"
+                              className="p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-xl font-bold text-blue-700 transition-all font-mono break-all flex items-center justify-center gap-2 text-xs"
                             >
-                              <Video className="w-4 h-4 text-blue-400 shrink-0" />
+                              <Video className="w-4 h-4 text-blue-700 shrink-0" />
                               <span>Join Google Meet Session</span>
-                              <ExternalLink className="w-3 h-3 text-blue-400/70" />
+                              <ExternalLink className="w-3 h-3 text-blue-700/70" />
                             </a>
                           </div>
                         )}
                         {bookingNotes && (
                           <div className="pt-2">
-                            <span className="text-zinc-500 block mb-1">Growth Notes:</span>
-                            <p className="text-zinc-400 font-light italic text-[11px]">"{bookingNotes}"</p>
+                            <span className="text-slate-500 block mb-1">Growth Notes:</span>
+                            <p className="text-slate-600 font-light italic text-[11px]">"{bookingNotes}"</p>
                           </div>
                         )}
                       </div>
 
-                      <div className="p-3 bg-blue-500/5 border border-blue-500/10 text-[10px] text-zinc-400 rounded-xl leading-relaxed">
+                      <div className="p-3 bg-blue-50 border border-blue-100 text-[10px] text-slate-600 rounded-xl leading-relaxed">
                         {completedLead.booking?.meetLink ? (
-                          <span>📅 A Google Calendar invitation with a <b>Google Meet call</b> has been scheduled and dispatched to <span className="text-white font-mono">{completedLead.email}</span>. Please verify your calendar app.</span>
+                          <span>📅 A Google Calendar invitation with a <b>Google Meet call</b> has been scheduled and dispatched to <span className="text-slate-950 font-mono font-bold">{completedLead.email}</span>. Please verify your calendar app.</span>
                         ) : (
-                          <span>📅 A Google Calendar invitation draft has been prepared for <span className="text-white font-mono">{completedLead.email}</span>. Our specialist will reach out to connect and map out your custom operating roadmap.</span>
+                          <span>📅 A Google Calendar invitation draft has been prepared for <span className="text-slate-950 font-mono font-bold">{completedLead.email}</span>. Our specialist will reach out to connect and map out your custom operating roadmap.</span>
                         )}
                       </div>
                     </div>

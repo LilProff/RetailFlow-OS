@@ -11,7 +11,9 @@ import {
   CheckCircle,
   HelpCircle,
   MessageSquare,
-  Users
+  Users,
+  Sun,
+  Moon
 } from 'lucide-react';
 
 // Types and Initial Data
@@ -44,6 +46,20 @@ export default function App() {
   // Navigation View controller
   // 'landing' | 'overview' | 'analytics' | 'market' | 'integrations' | 'tracking' | 'crm' | 'store' | 'sme-funnel'
   const [view, setView] = useState<'landing' | 'overview' | 'analytics' | 'market' | 'integrations' | 'tracking' | 'crm' | 'store' | 'sme-funnel'>('landing');
+
+  // Dark Mode preference state
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    return localStorage.getItem('sme_dark_mode') === 'true';
+  });
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('sme_dark_mode', darkMode ? 'true' : 'false');
+  }, [darkMode]);
 
   // Unified application state
   const [orders, setOrders] = useState<Order[]>(INITIAL_ORDERS);
@@ -339,24 +355,24 @@ export default function App() {
   }
 
   return (
-    <div className="bg-[#0A0A0B] text-[#e5e2e3] min-h-screen flex flex-col md:flex-row font-sans selection:bg-blue-600/30 selection:text-white">
+    <div className="bg-[#F8FAFC] text-slate-800 min-h-screen flex flex-col md:flex-row font-sans selection:bg-blue-600/10 selection:text-blue-900">
       
       {/* Dynamic Background Glows */}
-      <div className="fixed top-[10%] right-[-10%] w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="fixed bottom-[10%] left-[-10%] w-[500px] h-[500px] bg-cyan-900/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="fixed top-[10%] right-[-10%] w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="fixed bottom-[10%] left-[-10%] w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Workspace Sidebar Shell */}
-      <aside className="w-full md:w-64 glass-panel border-r border-[#27272A] flex flex-col justify-between p-4 z-40 relative md:sticky md:top-0 md:h-screen">
+      <aside className="w-full md:w-64 bg-white border-r border-slate-200/80 flex flex-col justify-between p-4 z-40 relative md:sticky md:top-0 md:h-screen shadow-sm">
         
         <div className="space-y-6">
           {/* Logo Brand Header */}
-          <div className="flex items-center gap-2 px-2 py-3 border-b border-[#27272A]/40">
-            <div className="w-8 h-8 rounded bg-[#3B82F6] flex items-center justify-center shadow">
+          <div className="flex items-center gap-2 px-2 py-3 border-b border-slate-100">
+            <div className="w-8 h-8 rounded bg-blue-600 flex items-center justify-center shadow">
               <Sparkles className="w-4 h-4 text-white animate-pulse" />
             </div>
             <div>
-              <span className="font-bold text-base tracking-tight text-white block leading-none">RetailFlow OS</span>
-              <span className="text-[9px] font-mono text-cyan-400 mt-1 block tracking-wider uppercase">Lagos Admin Node</span>
+              <span className="font-bold text-base tracking-tight text-slate-950 block leading-none">RetailFlow OS</span>
+              <span className="text-[9px] font-mono text-blue-700 mt-1 block tracking-wider uppercase font-bold">Lagos Admin Node</span>
             </div>
           </div>
 
@@ -364,10 +380,10 @@ export default function App() {
           <nav className="space-y-1">
             <button
               onClick={() => setView('overview')}
-              className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-mono font-bold flex items-center gap-2.5 transition-all ${
+              className={`w-full text-left px-3 py-2.5 rounded-xl text-xs font-mono font-bold flex items-center gap-2.5 transition-all ${
                 view === 'overview' 
-                  ? 'bg-[#3B82F6]/10 text-[#3B82F6] border border-blue-500/20 glass-highlight shadow-sm' 
-                  : 'text-on-surface-variant hover:text-white hover:bg-[#161618] border border-transparent'
+                  ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-sm' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent'
               }`}
             >
               <ShoppingCart className="w-4.5 h-4.5" /> Operations Pipeline
@@ -375,10 +391,10 @@ export default function App() {
 
             <button
               onClick={() => setView('analytics')}
-              className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-mono font-bold flex items-center gap-2.5 transition-all ${
+              className={`w-full text-left px-3 py-2.5 rounded-xl text-xs font-mono font-bold flex items-center gap-2.5 transition-all ${
                 view === 'analytics' 
-                  ? 'bg-[#3B82F6]/10 text-[#3B82F6] border border-blue-500/20 glass-highlight shadow-sm' 
-                  : 'text-on-surface-variant hover:text-white hover:bg-[#161618] border border-transparent'
+                  ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-sm' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent'
               }`}
             >
               <BarChart3 className="w-4.5 h-4.5" /> Strategic Analytics
@@ -386,10 +402,10 @@ export default function App() {
 
             <button
               onClick={() => setView('market')}
-              className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-mono font-bold flex items-center gap-2.5 transition-all ${
+              className={`w-full text-left px-3 py-2.5 rounded-xl text-xs font-mono font-bold flex items-center gap-2.5 transition-all ${
                 view === 'market' 
-                  ? 'bg-[#3B82F6]/10 text-[#3B82F6] border border-blue-500/20 glass-highlight shadow-sm' 
-                  : 'text-on-surface-variant hover:text-white hover:bg-[#161618] border border-transparent'
+                  ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-sm' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent'
               }`}
             >
               <Globe className="w-4.5 h-4.5" /> Market Scrapers
@@ -397,10 +413,10 @@ export default function App() {
 
             <button
               onClick={() => setView('integrations')}
-              className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-mono font-bold flex items-center gap-2.5 transition-all ${
+              className={`w-full text-left px-3 py-2.5 rounded-xl text-xs font-mono font-bold flex items-center gap-2.5 transition-all ${
                 view === 'integrations' 
-                  ? 'bg-[#3B82F6]/10 text-[#3B82F6] border border-blue-500/20 glass-highlight shadow-sm' 
-                  : 'text-on-surface-variant hover:text-white hover:bg-[#161618] border border-transparent'
+                  ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-sm' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent'
               }`}
             >
               <Settings className="w-4.5 h-4.5" /> Connect Channels
@@ -408,10 +424,10 @@ export default function App() {
 
             <button
               onClick={() => setView('crm')}
-              className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-mono font-bold flex items-center gap-2.5 transition-all ${
+              className={`w-full text-left px-3 py-2.5 rounded-xl text-xs font-mono font-bold flex items-center gap-2.5 transition-all ${
                 view === 'crm' 
-                  ? 'bg-[#3B82F6]/10 text-[#3B82F6] border border-blue-500/20 glass-highlight shadow-sm' 
-                  : 'text-on-surface-variant hover:text-white hover:bg-[#161618] border border-transparent'
+                  ? 'bg-blue-50 text-blue-700 border border-blue-100 shadow-sm' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent'
               }`}
             >
               <Users className="w-4.5 h-4.5" /> Client Directory CRM
@@ -420,17 +436,17 @@ export default function App() {
         </div>
 
         {/* Lower operator credits / logout */}
-        <div className="space-y-3 pt-4 border-t border-[#27272A]/40">
+        <div className="space-y-3 pt-4 border-t border-slate-100">
           <div className="flex items-center gap-2 px-2 text-xs">
             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="font-mono text-[10px] text-on-surface-variant uppercase tracking-wider">
+            <span className="font-mono text-[10px] text-slate-500 uppercase tracking-wider font-semibold">
               Operator Node Online
             </span>
           </div>
 
           <button
             onClick={() => setView('landing')}
-            className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/5 transition-all flex items-center gap-2 cursor-pointer"
+            className="w-full text-left px-3 py-2 rounded-xl text-xs font-bold text-rose-600 hover:text-rose-700 hover:bg-rose-50 transition-all flex items-center gap-2 cursor-pointer border border-transparent"
           >
             <LogOut className="w-4 h-4" /> Exit Workspace
           </button>
@@ -442,9 +458,9 @@ export default function App() {
       <main className="flex-1 flex flex-col min-w-0">
         
         {/* Top Header navbar bar */}
-        <header className="glass-panel glass-highlight px-6 py-4 flex items-center justify-between border-b border-[#27272A] relative sticky top-0 z-30">
+        <header className="bg-white/80 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b border-slate-200/80 sticky top-0 z-30 shadow-sm">
           <div>
-            <h1 className="text-sm font-bold text-white uppercase tracking-wider">
+            <h1 className="text-sm font-black text-slate-950 uppercase tracking-wider">
               {view === 'overview' && 'Sales Operations Desk'}
               {view === 'analytics' && 'Dynamic Analytics Hub'}
               {view === 'market' && 'Competitor Feed Scrapers'}
@@ -452,18 +468,27 @@ export default function App() {
               {view === 'tracking' && 'Live Delivery Express Tracker'}
               {view === 'crm' && 'Customer Database & CRM Directory'}
             </h1>
-            <p className="text-[10px] font-mono text-on-surface-variant">TechHub Lagos • Ikeja Node Active</p>
+            <p className="text-[10px] font-mono text-slate-400 font-semibold uppercase tracking-wider">TechHub Lagos • Ikeja Node Active</p>
           </div>
 
           {/* Quick System Metrics indicators */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             
-            <div className="hidden md:flex items-center gap-1.5 px-3 py-1 bg-[#161618] border border-[#27272A] rounded-lg text-[11px] font-mono text-cyan-400">
+            <button
+              id="theme-toggle-header"
+              onClick={() => setDarkMode(!darkMode)}
+              className="p-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:hover:bg-slate-850 dark:text-slate-400 transition-all cursor-pointer flex items-center justify-center shadow-xs"
+              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {darkMode ? <Sun className="w-4 h-4 text-amber-500" /> : <Moon className="w-4 h-4 text-blue-700" />}
+            </button>
+
+            <div className="hidden md:flex items-center gap-1.5 px-3 py-1 bg-slate-50 border border-slate-200 rounded-xl text-[11px] font-mono text-blue-700 font-bold">
               <Clock className="w-3.5 h-3.5" />
               <span>LAGOS: {systemTime || '--:--:--'}</span>
             </div>
 
-            <div className="flex items-center gap-1.5 px-3 py-1 bg-[#161618] border border-[#27272A] rounded-lg text-[11px] font-mono text-green-400">
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-green-50 border border-green-100 rounded-xl text-[11px] font-mono text-green-700 font-bold">
               <CheckCircle className="w-3.5 h-3.5" />
               <span>SLA: 99.9% OK</span>
             </div>
@@ -508,6 +533,8 @@ export default function App() {
               onSetGoogleSpreadsheetId={handleSetGoogleSpreadsheetId}
               onCreateNewSheet={handleCreateNewSheet}
               onTestSheetsSync={handleTestSheetsSync}
+              darkMode={darkMode}
+              onToggleDarkMode={() => setDarkMode(!darkMode)}
             />
           )}
 

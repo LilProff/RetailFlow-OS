@@ -1,6 +1,6 @@
 # Vercel Deployment & Google Integration Guide
 
-This guide explains how to export your **RetailFlow OS / SME Diagnostic Tool** codebase, deploy it to **Vercel**, and keep your Google Calendar, Meet, and Google Sheets integrations working seamlessly without asking your customers for authorization.
+This guide explains how to export your **RetailFlow OS** codebase, deploy it to **Vercel**, and keep your Google Calendar, Meet, and Google Sheets integrations working seamlessly without asking your customers for authorization.
 
 ---
 
@@ -9,8 +9,8 @@ This guide explains how to export your **RetailFlow OS / SME Diagnostic Tool** c
 To protect your users from Google OAuth popups, the app is built with a **Single-Admin Shared Integration Architecture**:
 1. **One-Time Admin Auth**: You (the owner) log into your Google Account *once* via the **Integrations** tab in the admin view.
 2. **Secure Token Storage**: Your Google Access Token and Google Spreadsheet ID are stored securely in your private Firebase Firestore database (`config/google`).
-3. **Silent Customer Booking**: When a customer takes the diagnostic quiz and books a meeting, the app fetches your active token from Firestore behind the scenes. It creates the Google Calendar event, generates a real Google Meet link, and appends the lead data to your spreadsheet **silently** on your behalf.
-4. **Zero-Friction Client Experience**: Your customers only see the clean diagnostic quiz and booking slots—they are **never** prompted to connect Google or grant permissions.
+3. **Silent Customer Booking**: When a customer submits the consultation form and books a meeting, the app fetches your active token from Firestore behind the scenes. It creates the Google Calendar event, generates a real Google Meet link, and appends the lead data to your spreadsheet **silently** on your behalf.
+4. **Zero-Friction Client Experience**: Your customers only see the clean growth consultation form and booking slots—they are **never** prompted to connect Google or grant permissions.
 
 ---
 
@@ -110,4 +110,4 @@ Since your Firebase configuration is safely declared in `firebase-applet-config.
 3. Click **Connect** on **Google Sheets** and **Google Calendar**.
 4. Log into your Google workspace account.
 5. Once authenticated, your new active token will automatically write to your Firestore database.
-6. From that exact second forward, any customer completing the quiz anywhere in the world will automatically schedule calendar invites with Google Meet links on your schedule and log details directly to your spreadsheet!
+6. From that exact second forward, any customer completing the consultation form anywhere in the world will automatically schedule calendar invites with Google Meet links on your schedule and log details directly to your spreadsheet!
