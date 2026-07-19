@@ -620,13 +620,13 @@ export default function LandingPage({ onEnterAdmin, onEnterCustomer, onEnterSmeF
       {/* Huge Brand Mark Footer Area */}
       <footer className="border-t border-slate-200/80 bg-white">
         <div className="grid border-b border-slate-200/80 lg:grid-cols-2 max-w-[1600px] mx-auto">
-          <div className="px-8 py-10 lg:py-14 border-b lg:border-b-0 lg:border-r border-slate-200/80">
-            <h2 className="text-[72px] lg:text-[120px] font-black leading-[0.82] tracking-tighter text-slate-950 select-none">
+          <div className="px-8 py-10 lg:py-14 border-b lg:border-b-0 lg:border-r border-slate-200/80 flex items-center">
+            <h2 className="text-[48px] sm:text-[72px] lg:text-[100px] font-black leading-none tracking-tighter text-slate-950 select-none">
               RETAILFLOW
             </h2>
           </div>
-          <div className="flex items-end px-8 py-10 lg:py-14">
-            <p className="text-[36px] lg:text-[54px] font-black leading-[0.88] tracking-tighter text-blue-700 select-none">
+          <div className="flex items-center lg:items-end px-8 py-10 lg:py-14">
+            <p className="text-[28px] sm:text-[42px] lg:text-[52px] font-black leading-tight lg:leading-[0.9] tracking-tighter text-blue-700 select-none">
               OPERATIONS REIMAGINED
             </p>
           </div>
