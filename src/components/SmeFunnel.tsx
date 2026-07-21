@@ -1195,6 +1195,18 @@ export default function SmeFunnel({
                     </p>
                   </div>
 
+                  {calendarSyncError && (
+                    <div className="bg-amber-50/70 border border-amber-200 rounded-xl p-3 max-w-xl mx-auto flex gap-3 text-left">
+                      <div className="text-amber-600 shrink-0 text-base">⚠️</div>
+                      <div className="space-y-1">
+                        <h4 className="text-xs font-bold text-slate-900">Google Workspace Sync Paused</h4>
+                        <p className="text-[11px] text-slate-500 leading-normal font-light">
+                          The administrator's Google Session has expired. Live calendar slot-checking is temporarily offline, but you can still book any slot below. If you are the administrator, please click <b>Connect Google Account</b> under the Integrations panel to refresh.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
                   {!isBooked ? (
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-8 max-w-3xl mx-auto">
                       
@@ -1210,6 +1222,11 @@ export default function SmeFunnel({
                                     <RefreshCw className="w-3 h-3 text-blue-700 animate-spin" />
                                     <span className="text-slate-400">Syncing...</span>
                                   </>
+                                ) : calendarSyncError ? (
+                                  <>
+                                    <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                                    <span className="text-amber-600 font-bold">Offline Backup Mode</span>
+                                  </>
                                 ) : (
                                   <>
                                     <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
@@ -1218,7 +1235,13 @@ export default function SmeFunnel({
                                 )}
                               </div>
                             ) : (
-                              <span className="text-[9px] font-mono text-slate-400 uppercase">Offline Mode</span>
+                              <button
+                                type="button"
+                                onClick={onGoogleSignIn}
+                                className="px-2.5 py-1 bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 rounded-lg text-[9px] font-mono font-bold uppercase transition-all cursor-pointer flex items-center gap-1 shrink-0"
+                              >
+                                🔑 Connect Google Workspace
+                              </button>
                             )}
                           </div>
                           <div className="grid grid-cols-4 gap-2">

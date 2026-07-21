@@ -25,20 +25,21 @@ import {
   SlidersHorizontal
 } from 'lucide-react';
 import { Product, CartItem, Order } from '../types';
-import { PRODUCTS } from '../data';
 
 interface CustomerStorefrontProps {
   onBackToLanding: () => void;
   onAddOrder: (newOrder: Order) => void;
   onSelectOrder: (order: Order) => void;
   existingOrders: Order[];
+  products: Product[];
 }
 
 export default function CustomerStorefront({ 
   onBackToLanding, 
   onAddOrder, 
   onSelectOrder,
-  existingOrders 
+  existingOrders,
+  products
 }: CustomerStorefrontProps) {
   
   // Shopping views
@@ -158,7 +159,7 @@ export default function CustomerStorefront({
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   // Filter products
-  const filteredProducts = PRODUCTS.filter(p => {
+  const filteredProducts = products.filter(p => {
     const matchesCategory = selectedCategory === 'ALL' || p.category === selectedCategory;
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -336,24 +337,24 @@ export default function CustomerStorefront({
       let actionProduct: Product | undefined;
 
       // 1. Identify product request
-      const matchedProd = PRODUCTS.find(p => normalized.includes(p.name.toLowerCase()) || normalized.includes(p.id));
+      const matchedProd = products.find(p => normalized.includes(p.name.toLowerCase()) || normalized.includes(p.id));
 
       if (normalized.includes('discount') || normalized.includes('promo') || normalized.includes('coupon') || normalized.includes('cheap')) {
         aiText = "Oh! You want some discounts? I got you! Use the promo code **RETAILFLOW10** during checkout for an extra 10% off your entire cart. Also, remember if you buy 2 or more of any item, our Lagos OS automatically applies a 5% bulk discount!";
       } else if (normalized.includes('delivery') || normalized.includes('shipping') || normalized.includes('lagos') || normalized.includes('dispatch')) {
         aiText = "We offer lightning-fast dispatch from our main hub in Ikeja GRA. Standard delivery to Lekki Phase 1, Victoria Island, and Ikoyi is just ₦5,000, and we deliver same-day for orders confirmed before 2:00 PM.";
       } else if (normalized.includes('iphone') || normalized.includes('phone') || normalized.includes('s24')) {
-        const iphone = PRODUCTS.find(p => p.id === 'prod-1')!;
-        const ultra = PRODUCTS.find(p => p.id === 'prod-3')!;
-        aiText = `We have the latest smartphones in stock! \n\n* **${iphone.name}**: ₦${iphone.price.toLocaleString()} (Stock: ${iphone.stock} left in Lagos). \n* **${ultra.name}**: ₦${ultra.price.toLocaleString()} (Stock: ${ultra.stock} left in Lagos). \n\nBoth are eligible for same-day delivery. Would you like me to add one of these to your shopping cart?`;
+        const iphone = products.find(p => p.id === 'prod-1')!;
+        const ultra = products.find(p => p.id === 'prod-3')!;
+        aiText = `We have the latest smartphones in stock! \n\n* **${iphone ? iphone.name : 'iPhone 15 Pro'}**: ₦${iphone ? iphone.price.toLocaleString() : '1,450,000'} (Stock: ${iphone ? iphone.stock : '12'} left in Lagos). \n* **${ultra ? ultra.name : 'Galaxy S24 Ultra'}**: ₦${ultra ? ultra.price.toLocaleString() : '1,620,000'} (Stock: ${ultra ? ultra.stock : '15'} left in Lagos). \n\nBoth are eligible for same-day delivery. Would you like me to add one of these to your shopping cart?`;
         actionProduct = iphone;
       } else if (normalized.includes('macbook') || normalized.includes('laptop') || normalized.includes('computer')) {
-        const mac = PRODUCTS.find(p => p.id === 'prod-2')!;
-        aiText = `The **MacBook Air M3** is a beast! It retails for ₦${mac.price.toLocaleString()} and we currently have ${mac.stock} units left at our physical storefront. It features the Apple M3 chip and gorgeous space gray finish. I can add it directly to your cart right now.`;
+        const mac = products.find(p => p.id === 'prod-2')!;
+        aiText = `The **MacBook Air M3** is a beast! It retails for ₦${mac ? mac.price.toLocaleString() : '1,400,000'} and we currently have ${mac ? mac.stock : '8'} units left at our physical storefront. It features the Apple M3 chip and gorgeous space gray finish. I can add it directly to your cart right now.`;
         actionProduct = mac;
       } else if (normalized.includes('sony') || normalized.includes('audio') || normalized.includes('headphone') || normalized.includes('music')) {
-        const sony = PRODUCTS.find(p => p.id === 'prod-4')!;
-        aiText = `Ah, excellent taste! The **Sony WH-1000XM5** headphones deliver industry-leading ANC. They are retailing for ₦${sony.price.toLocaleString()} with ${sony.stock} units available. Would you like me to add them to your cart?`;
+        const sony = products.find(p => p.id === 'prod-4')!;
+        aiText = `Ah, excellent taste! The **Sony WH-1000XM5** headphones deliver industry-leading ANC. They are retailing for ₦${sony ? sony.price.toLocaleString() : '385,000'} with ${sony ? sony.stock : '20'} units available. Would you like me to add them to your cart?`;
         actionProduct = sony;
       } else if (matchedProd) {
         aiText = `Great inquiry! The **${matchedProd.name}** goes for ₦${matchedProd.price.toLocaleString()}. Specs: ${matchedProd.specs.join(', ')}. Stock level: ${matchedProd.stock} units. Let me know if you would like me to add this to your cart!`;
@@ -504,7 +505,7 @@ export default function CustomerStorefront({
               
               <div className="flex items-center gap-3">
                 <span className="text-[10px] font-mono font-bold text-slate-400 hidden lg:inline">
-                  Showing {filteredProducts.length} of {PRODUCTS.length} premium models
+                  Showing {filteredProducts.length} of {products.length} premium models
                 </span>
                 
                 <button 

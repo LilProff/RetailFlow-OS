@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Integration } from '../types';
+import { Integration, QuizLead } from '../types';
+import { appendLeadToGoogleSheet } from '../lib/sheets';
+import { createCalendarMeetEvent } from '../lib/calendar';
 import { 
   X, 
   Settings, 
@@ -21,7 +23,11 @@ import {
   CheckCircle,
   Info,
   Sun,
-  Moon
+  Moon,
+  ExternalLink,
+  ChevronRight,
+  Terminal,
+  Activity
 } from 'lucide-react';
 
 interface IntegrationsViewProps {
@@ -42,6 +48,9 @@ interface IntegrationsViewProps {
   // Theme settings
   darkMode: boolean;
   onToggleDarkMode: () => void;
+
+  // Sync Diagnostics
+  rawLeads: QuizLead[];
 }
 
 export default function IntegrationsView({
@@ -57,7 +66,8 @@ export default function IntegrationsView({
   onCreateNewSheet,
   onTestSheetsSync,
   darkMode,
-  onToggleDarkMode
+  onToggleDarkMode,
+  rawLeads
 }: IntegrationsViewProps) {
   
   const [selectedInt, setSelectedInt] = useState<Integration | null>(null);
@@ -66,6 +76,115 @@ export default function IntegrationsView({
   const [isCreatingSheet, setIsCreatingSheet] = useState(false);
   const [isTestingSheet, setIsTestingSheet] = useState(false);
   const [activeToast, setActiveToast] = useState<{ message: string; type: 'success' | 'info' } | null>(null);
+
+  // Sync Diagnostics States
+  const [selectedLeadId, setSelectedLeadId] = useState<string>('demo-lead-tester');
+  const [diagnosticsLogs, setDiagnosticsLogs] = useState<string[]>([
+    `[${new Date().toLocaleTimeString()}] [SYSTEM] Diagnostics console online. Connect Google account to verify live handshakes.`
+  ]);
+  const [isRunningDiagSheets, setIsRunningDiagSheets] = useState(false);
+  const [isRunningDiagCal, setIsRunningDiagCal] = useState(false);
+
+  const addLog = (msg: string) => {
+    setDiagnosticsLogs(prev => [...prev, `[${new Date().toLocaleTimeString()}] ${msg}`]);
+  };
+
+  const demoLead: QuizLead = {
+    id: 'demo-lead-tester',
+    timestamp: new Date().toISOString().replace('T', ' ').substring(0, 16),
+    name: 'Amaka Lagos Tester',
+    businessName: 'Lagos Flow Test Ltd',
+    whatsapp: '+234 800 TEST FLOW',
+    email: 'tester@flowos.com',
+    industry: 'Retail Flow',
+    channels: ['WhatsApp Business', 'Instagram Shop'],
+    replyDelay: 'Often',
+    corePain: 'Manual messaging bottlenecks',
+    timeValuation: 'A lot',
+    revenueLeakage: 1200000,
+    booking: {
+      date: '2026-07-20',
+      time: '10:00 AM',
+      notes: 'Test lead sync connection is working perfectly!'
+    },
+    syncedToSheets: false
+  };
+
+  const activeLeads = rawLeads && rawLeads.length > 0 ? rawLeads : [demoLead];
+  const activeLead = activeLeads.find(l => l.id === selectedLeadId) || activeLeads[0];
+
+  const handleManualSyncSheets = async (lead: QuizLead) => {
+    if (!googleToken) {
+      addLog('❌ Sync Failed: No active Google OAuth Token. Please connect above.');
+      return;
+    }
+    if (!googleSpreadsheetId) {
+      addLog('❌ Sync Failed: Missing Google Spreadsheet ID. Use "Create Fresh Sheet" or paste one.');
+      return;
+    }
+
+    setIsRunningDiagSheets(true);
+    addLog(`⏳ Initializing Google Sheets handshake for lead: ${lead.name}...`);
+    addLog(`📡 Target Spreadsheet ID: "${googleSpreadsheetId}"`);
+    addLog(`📡 Target range configured: 'Growth_Leads!A:K'`);
+    addLog(`🔐 Header payload configured with Google Bearer Token...`);
+
+    try {
+      await appendLeadToGoogleSheet(googleToken, googleSpreadsheetId, lead);
+      addLog(`✨ API RESPONSE: 200 OK. Successfully appended lead row to sheet tab "Growth_Leads"!`);
+      showToast('Successfully verified Google Sheets row append! Click the spreadsheet link below to view it.', 'success');
+    } catch (err: any) {
+      const errMsg = err.message || String(err);
+      addLog(`❌ Google Sheets API Error: ${errMsg}`);
+      addLog(`💡 Troubleshooting Guide:`);
+      addLog(`   1. Did you grant Google Sheets permissions during login? (Check both boxes!)`);
+      addLog(`   2. Is the spreadsheet ID valid and owned by your account?`);
+      showToast(`Sheets sync verification failed. See diagnostics console below.`, 'info');
+    } finally {
+      setIsRunningDiagSheets(false);
+    }
+  };
+
+  const handleManualSyncCalendar = async (lead: QuizLead) => {
+    if (!googleToken) {
+      addLog('❌ Calendar Sync Failed: No active Google OAuth Token. Please connect above.');
+      return;
+    }
+    if (!lead.booking) {
+      addLog('❌ Calendar Sync Skipped: Selected lead has no consultation date & hour scheduled.');
+      return;
+    }
+
+    setIsRunningDiagCal(true);
+    addLog(`⏳ Scheduling consultation with Google Calendar API for lead: ${lead.name}...`);
+    addLog(`📅 Scheduled Time slot: ${lead.booking.date} at ${lead.booking.time} (WAT)`);
+    addLog(`🔐 Sending request with automated Google Meet video meeting room generation...`);
+
+    try {
+      const result = await createCalendarMeetEvent(googleToken, {
+        summary: `RetailFlow OS - SME Consultation (${lead.businessName})`,
+        description: `15-Min System Architecture Session with ${lead.name}.\n\nGrowth Notes: ${lead.booking.notes || 'None'}\n\nEstimated Annual Revenue Leakage: ₦${lead.revenueLeakage.toLocaleString()}`,
+        date: lead.booking.date,
+        time: lead.booking.time,
+        attendeeEmail: lead.email
+      });
+
+      addLog(`✨ API RESPONSE: 200 OK. Event successfully created with ID: "${result.eventId}"`);
+      if (result.hangoutLink) {
+        addLog(`📹 Google Meet Synced Room URI: ${result.hangoutLink}`);
+      }
+      showToast('Successfully verified Google Calendar sync and generated a Google Meet room!', 'success');
+    } catch (err: any) {
+      const errMsg = err.message || String(err);
+      addLog(`❌ Google Calendar API Error: ${errMsg}`);
+      addLog(`💡 Troubleshooting Guide:`);
+      addLog(`   1. Did you grant Google Calendar permissions during login? (Verify both checkbox scopes!)`);
+      addLog(`   2. Make sure your primary calendar has not been modified or deleted.`);
+      showToast(`Calendar sync verification failed. See diagnostics console below.`, 'info');
+    } finally {
+      setIsRunningDiagCal(false);
+    }
+  };
 
   const showToast = (message: string, type: 'success' | 'info' = 'success') => {
     setActiveToast({ message, type });
@@ -320,6 +439,144 @@ export default function IntegrationsView({
         })}
       </div>
 
+      {/* Live Integration Sync & Diagnostics Console */}
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-slate-800/60">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/50 flex items-center justify-center text-blue-700 dark:text-blue-400">
+              <Activity className="w-5 h-5 animate-pulse" />
+            </div>
+            <div>
+              <h3 className="text-base font-black text-slate-950 dark:text-white">🔌 Live Integration Sync & Diagnostics Console</h3>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">Verify API connections, run direct diagnostic handshakes, and debug Google scope permissions.</p>
+            </div>
+          </div>
+
+          {/* Quick links */}
+          <div className="flex flex-wrap gap-2 text-xs font-mono">
+            {googleSpreadsheetId && (
+              <a 
+                href={`https://docs.google.com/spreadsheets/d/${googleSpreadsheetId}/edit`} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="px-3 py-1.5 bg-emerald-50 dark:bg-emerald-950/35 border border-emerald-100 dark:border-emerald-900/50 rounded-xl text-emerald-700 dark:text-emerald-400 font-bold hover:underline flex items-center gap-1.5"
+              >
+                <FileSpreadsheet className="w-3.5 h-3.5" />
+                <span>Open Spreadsheet ↗</span>
+              </a>
+            )}
+            <a 
+              href="https://calendar.google.com/" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="px-3 py-1.5 bg-blue-50 dark:bg-blue-950/35 border border-blue-100 dark:border-blue-900/50 rounded-xl text-blue-700 dark:text-blue-400 font-bold hover:underline flex items-center gap-1.5"
+            >
+              <Calendar className="w-3.5 h-3.5" />
+              <span>Open Calendar ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          {/* Left panel: Trigger diagnostics */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-4">
+              <span className="font-mono text-[9px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-extrabold block">
+                STEP 1: SELECT DIAGNOSTIC LEAD TARGET
+              </span>
+              
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wide block">Available Leads</label>
+                <select
+                  value={selectedLeadId}
+                  onChange={(e) => setSelectedLeadId(e.target.value)}
+                  className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs rounded-xl px-3 py-2 focus:border-blue-500 dark:focus:border-blue-400 outline-none text-slate-900 dark:text-slate-100 font-mono font-semibold cursor-pointer"
+                >
+                  {activeLeads.map(l => (
+                    <option key={l.id} value={l.id}>
+                      {l.name} ({l.businessName})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-xl space-y-2 text-[11px] font-mono text-slate-600 dark:text-slate-400">
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Contact</span>
+                  <span className="font-bold text-slate-900 dark:text-slate-100">{activeLead.email}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Estimated Leakage</span>
+                  <span className="font-bold text-red-600 dark:text-red-400">₦{activeLead.revenueLeakage.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Scheduled slot</span>
+                  <span className="font-bold text-blue-700 dark:text-blue-400">
+                    {activeLead.booking ? `${activeLead.booking.date} at ${activeLead.booking.time}` : 'Not scheduled'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-4">
+              <span className="font-mono text-[9px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-extrabold block">
+                STEP 2: RUN TEST HANDSHAKE
+              </span>
+
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={() => handleManualSyncSheets(activeLead)}
+                  disabled={!googleToken || isRunningDiagSheets}
+                  className="px-3 py-3 bg-emerald-700 hover:bg-emerald-800 disabled:bg-slate-200 dark:disabled:bg-slate-800 disabled:text-slate-400 rounded-xl text-[11px] font-bold text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                >
+                  <RefreshCw className={`w-3.5 h-3.5 ${isRunningDiagSheets ? 'animate-spin' : ''}`} />
+                  <span>{isRunningDiagSheets ? 'Syncing...' : 'Sync to Sheets'}</span>
+                </button>
+
+                <button
+                  onClick={() => handleManualSyncCalendar(activeLead)}
+                  disabled={!googleToken || isRunningDiagCal || !activeLead.booking}
+                  className="px-3 py-3 bg-blue-700 hover:bg-blue-800 disabled:bg-slate-200 dark:disabled:bg-slate-800 disabled:text-slate-400 rounded-xl text-[11px] font-bold text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                >
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>{isRunningDiagCal ? 'Booking...' : 'Book Calendar'}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right panel: Console debugger logs */}
+          <div className="lg:col-span-7 flex flex-col justify-between space-y-4 h-[310px]">
+            <div className="bg-slate-950 dark:bg-black rounded-2xl border border-slate-800 p-4 font-mono text-[10px] text-slate-300 flex-1 flex flex-col overflow-hidden shadow-inner">
+              <div className="flex items-center justify-between border-b border-slate-900 pb-2 mb-2 text-slate-500 font-extrabold">
+                <div className="flex items-center gap-2">
+                  <Terminal className="w-3.5 h-3.5 text-blue-500" />
+                  <span>RETAILFLOW_HANDSHAKE_DEBUGLOG.TXT</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                  <span>LIVE CONSOLE</span>
+                </div>
+              </div>
+              <div className="flex-1 overflow-y-auto space-y-1 scrollbar-thin scrollbar-thumb-slate-800 pr-1 select-text">
+                {diagnosticsLogs.map((log, idx) => (
+                  <div key={idx} className="whitespace-pre-wrap leading-relaxed">
+                    {log}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-3.5 bg-blue-50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/40 rounded-xl text-[10px] text-slate-600 dark:text-slate-400 leading-relaxed font-light">
+              <strong className="text-slate-950 dark:text-slate-200 font-extrabold block mb-1">💡 Troubleshooting Google Scope Permissions:</strong>
+              When signing in with your Google Workspace Account, Google displays a security checklist where you <b>must check the specific checkboxes</b> to allow Sheets and Calendar access. If these are unchecked, writes will fail with a <code>403 Forbidden</code> error. To fix this, click <b>Disconnect</b>, clear your cookies, and click <b>Connect</b> again, ensuring all checkboxes are checked!
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       {/* Real Google Sheets Configuration Modal */}
       {showSheetsConfig && googleToken && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -374,6 +631,18 @@ export default function IntegrationsView({
                 <span className="text-[10px] text-slate-400 block leading-tight font-semibold">
                   You can find this ID in your Google Sheet URL: <code>https://docs.google.com/spreadsheets/d/<b>SPREADSHEET_ID</b>/edit</code>
                 </span>
+                {googleSpreadsheetId && (
+                  <div className="pt-1">
+                    <a 
+                      href={`https://docs.google.com/spreadsheets/d/${googleSpreadsheetId}/edit`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-extrabold text-emerald-600 hover:text-emerald-700 transition-all font-mono"
+                    >
+                      <span>Open Connected Google Sheet ↗</span>
+                    </a>
+                  </div>
+                )}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 pt-2">

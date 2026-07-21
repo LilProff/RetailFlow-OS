@@ -17,7 +17,7 @@ import {
   Laptop,
   HelpCircle
 } from 'lucide-react';
-import { Order, Message, Lead } from '../types';
+import { Order, Message, Lead, Product } from '../types';
 import { AI_QA_PAIRS } from '../data';
 
 interface DashboardOverviewProps {
@@ -29,6 +29,8 @@ interface DashboardOverviewProps {
   onSelectOrder: (order: Order) => void;
   leads: Lead[];
   onUpdateLead: (leadId: string, updates: Partial<Lead>) => void;
+  products: Product[];
+  onNavigate: (view: string) => void;
 }
 
 export default function DashboardOverview({
@@ -39,7 +41,9 @@ export default function DashboardOverview({
   onSendMessage,
   onSelectOrder,
   leads,
-  onUpdateLead
+  onUpdateLead,
+  products,
+  onNavigate
 }: DashboardOverviewProps) {
   
   // Search & Filter state for Orders
@@ -84,6 +88,10 @@ export default function DashboardOverview({
 
   const newOrdersCount = orders.filter(o => o.status === 'NEW').length;
   const processingCount = orders.filter(o => o.status === 'CONFIRMED' || o.status === 'SHIPPED').length;
+
+  const lowStockCount = products ? products.filter(p => p.stock > 0 && p.stock <= 4).length : 0;
+  const outOfStockCount = products ? products.filter(p => p.stock === 0).length : 0;
+  const totalProductsCount = products ? products.length : 0;
 
   // Handle adding order
   const handleCreateOrder = (e: React.FormEvent) => {
@@ -183,14 +191,14 @@ export default function DashboardOverview({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Metric 1 */}
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 flex flex-col relative overflow-hidden group shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 flex flex-col relative overflow-hidden group shadow-sm">
           <div className="absolute top-4 right-4 text-green-600">
             <TrendingUp className="w-5 h-5" />
           </div>
-          <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-2 block">
+          <span className="font-mono text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-bold mb-2 block">
             Total Revenue (Today)
           </span>
-          <span className="text-3xl font-black text-slate-950 tracking-tight">
+          <span className="text-3xl font-black text-slate-950 dark:text-white tracking-tight">
             ₦{totalRevenueToday.toLocaleString()}
           </span>
           <div className="mt-4 flex items-center gap-1.5 text-xs text-green-600 font-semibold">
@@ -199,55 +207,97 @@ export default function DashboardOverview({
         </div>
 
         {/* Metric 2 */}
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 flex flex-col shadow-sm">
-          <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-2 block">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 flex flex-col shadow-sm">
+          <span className="font-mono text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-bold mb-2 block">
             Active Orders Pipeline
           </span>
-          <span className="text-3xl font-black text-slate-950 tracking-tight">
+          <span className="text-3xl font-black text-slate-950 dark:text-white tracking-tight">
             {orders.length}
           </span>
           <div className="mt-4 flex gap-2">
-            <span className="text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full border border-blue-100 font-mono font-bold">
+            <span className="text-[10px] bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-400 px-2 py-0.5 rounded-full border border-blue-100 dark:border-blue-900/50 font-mono font-bold">
               {newOrdersCount} New
             </span>
-            <span className="text-[10px] bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full border border-sky-100 font-mono font-bold">
+            <span className="text-[10px] bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-400 px-2 py-0.5 rounded-full border border-sky-100 dark:border-sky-900/50 font-mono font-bold">
               {processingCount} Processing
             </span>
           </div>
         </div>
 
-        {/* AI Insights Card */}
-        <div className="bg-white border border-blue-200 rounded-2xl p-6 flex flex-col lg:col-span-2 relative overflow-hidden shadow-sm group">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] to-transparent pointer-events-none" />
-          <div className="flex items-start justify-between mb-2">
-            <div className="flex items-center gap-2 text-blue-700">
-              <Sparkles className="w-4 h-4 animate-pulse" />
-              <span className="font-mono text-[10px] uppercase tracking-wider font-bold">
-                AI Cognitive Assistant Active
+        {/* Metric 3: Stocks & Inventory Levels */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-sm">
+          <div>
+            <span className="font-mono text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-bold mb-2 block">
+              Stock & Inventory Levels
+            </span>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-3xl font-black text-slate-950 dark:text-white tracking-tight">
+                {totalProductsCount}
+              </span>
+              <span className="text-xs text-slate-400 font-mono">Catalog Items</span>
+            </div>
+          </div>
+          <div className="mt-4 space-y-2">
+            <div className="flex gap-2">
+              <span className={`text-[9px] px-2 py-0.5 rounded-full font-mono font-bold border ${
+                lowStockCount > 0 
+                  ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border-amber-100 dark:border-amber-900/40' 
+                  : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-100 dark:border-emerald-900/40'
+              }`}>
+                {lowStockCount} Low Stock
+              </span>
+              <span className={`text-[9px] px-2 py-0.5 rounded-full font-mono font-bold border ${
+                outOfStockCount > 0 
+                  ? 'bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400 border-red-100 dark:border-red-900/40' 
+                  : 'bg-slate-50 dark:bg-slate-950/40 text-slate-500 dark:text-slate-400 border-slate-100 dark:border-slate-800'
+              }`}>
+                {outOfStockCount} Out of Stock
               </span>
             </div>
-            <span className="text-[10px] font-mono bg-slate-50 px-2.5 py-0.5 rounded-full border border-slate-200 text-slate-500 font-semibold">
-              Real-time feed
+            <button 
+              onClick={() => onNavigate('inventory')}
+              className="text-[10px] font-mono font-extrabold text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-left hover:underline flex items-center gap-1 cursor-pointer"
+            >
+              <span>Manage Stocks & Add Inventory ↗</span>
+            </button>
+          </div>
+        </div>
+
+        {/* AI Insights Card */}
+        <div className="bg-white dark:bg-slate-900 border border-blue-200 dark:border-blue-900/40 rounded-2xl p-6 flex flex-col relative overflow-hidden shadow-sm group">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/[0.02] to-transparent pointer-events-none" />
+          <div className="flex items-start justify-between mb-2">
+            <div className="flex items-center gap-2 text-blue-700 dark:text-blue-400">
+              <Sparkles className="w-4 h-4 animate-pulse" />
+              <span className="font-mono text-[10px] uppercase tracking-wider font-bold">
+                AI Cognitive Assistant
+              </span>
+            </div>
+            <span className="text-[10px] font-mono bg-slate-50 dark:bg-slate-950 px-2.5 py-0.5 rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold">
+              Live Feed
             </span>
           </div>
-          <h3 className="text-base font-black text-slate-950 mb-1">
+          <h3 className="text-xs font-black text-slate-950 dark:text-white mb-1 leading-tight">
             Dynamic Lagos pricing recommended
           </h3>
-          <p className="text-xs text-slate-500 line-clamp-2 mt-1 font-light">
-            Competitor pricing alerts detected a ₦25,000 drop at Pointek Ikeja for iPhone 15 Pro. Recommend a promotional draft to <strong>Emeka Nnamdi</strong> to secure his bulk purchase today.
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 mt-1 leading-relaxed font-light">
+            Competitor pricing alerts detected a ₦25,000 drop at Pointek Ikeja for iPhone 15 Pro. Recommend a promotional draft.
           </p>
-          <div className="mt-4 pt-2 flex gap-3">
+          <div className="mt-3 pt-1 flex gap-2.5">
             <button 
               onClick={() => {
                 setSelectedSender('Emeka Nnamdi');
                 setReplyInput("Hi Emeka, I can apply a special dynamic discount of ₦20,000 per unit for your bulk devs order today.");
               }}
-              className="text-[11px] font-mono font-bold text-white bg-blue-700 hover:bg-blue-800 px-3 py-1.5 rounded-xl transition-all cursor-pointer shadow-sm"
+              className="text-[10px] font-mono font-bold text-white bg-blue-700 hover:bg-blue-800 px-2.5 py-1 rounded-lg transition-all cursor-pointer shadow-xs"
             >
-              Draft WhatsApp Offer
+              Draft Offer
             </button>
-            <button className="text-[11px] font-mono font-bold text-blue-700 hover:text-blue-800 transition-colors">
-              Compare Price Feeds
+            <button 
+              onClick={() => onNavigate('market')}
+              className="text-[10px] font-mono font-bold text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors cursor-pointer"
+            >
+              Compare Feeds
             </button>
           </div>
         </div>

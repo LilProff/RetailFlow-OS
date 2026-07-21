@@ -6,7 +6,7 @@ import firebaseConfig from '../../firebase-applet-config.json';
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+export const db = getFirestore(app, (firebaseConfig as any).firestoreDatabaseId || 'ai-studio-retailflowos-a7f30067-e0fe-4025-8b1a-92e7c68e37ca');
 
 export const provider = new GoogleAuthProvider();
 // Request Google Sheets and Calendar scopes
